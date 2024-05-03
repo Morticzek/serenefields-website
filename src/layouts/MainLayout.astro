@@ -1,3 +1,18 @@
 ---
-$END$
+import Header from "../components/widgets/header";
+const { title } = Astro.props;
 ---
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="{{ site.description }}" />
+        <title>Title </title>
+    </head>
+    <body>
+        <main>
+            <Header/>
+            <slot />
+        </main>
+    </body>
+</html>
