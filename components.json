@@ -8,7 +8,7 @@
     "css": "@/assets/styles/globals.css",
     "baseColor": "neutral",
     "cssVariables": true,
-    "prefix": "sh-"
+    "prefix": ""
   },
   "aliases": {
     "components": "@/components",

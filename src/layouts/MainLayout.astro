@@ -1,17 +1,20 @@
 ---
-import Header from "../components/widgets/header";
+import Header from "../components/widgets/Header.astro";
 const { title } = Astro.props;
 ---
 <html lang="en">
     <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content="{{ site.description }}" />
         <title>Title </title>
     </head>
-    <body>
+    <body class="bg-neutral-700 h-min-screen w-full">
         <main>
-            <Header/>
+            <Header title="{{ title }}" />
             <slot />
         </main>
     </body>

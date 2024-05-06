@@ -1,0 +1,17 @@
+---
+import {twMerge} from "tailwind-merge";
+const { content, href, classes } = Astro.props;
+const buttonClass = twMerge('bg-neutral-400', 'rounded-lg', 'p-2', classes);
+---
+<button class={ buttonClass }>
+    {
+        content && !href && (
+            <span>{content}</span>
+        )
+    }
+    {
+        content && href && (
+                    <a href={ href }>{ content }</a>
+        )
+    }
+</button>
