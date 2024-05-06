@@ -1,12 +1,13 @@
 ---
 import {twMerge} from "tailwind-merge";
+import DiscordLogo from "../symbols/DiscordLogo.astro";
 const { content, href, classes } = Astro.props;
 const buttonClass = twMerge('bg-neutral-400', 'rounded-lg', 'p-2', classes);
 ---
 <button class={ buttonClass }>
     {
         content && !href && (
-            <span>{content}</span>
+            <div class="flex"><span class="mr-2 pt-1">{content}</span> <DiscordLogo class="ml-1 align-middle" /></div>
         )
     }
     {

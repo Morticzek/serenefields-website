@@ -2,12 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-.comfortaa-700 {
-                font-family: "Comfortaa", sans-serif;
-                font-optical-sizing: auto;
-                font-weight: 700;
-                font-style: normal;
-            }
+.gabarito-900 {
+               font-family: "Gabarito", sans-serif;
+               font-optical-sizing: auto;
+               font-weight: 900;
+               font-style: normal;
+           }
+
+.gabarito-700 {
+    font-family: "Gabarito", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+}
 
 @layer base {
     :root {
