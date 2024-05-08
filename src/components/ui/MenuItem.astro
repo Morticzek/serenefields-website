@@ -1,0 +1,28 @@
+---
+const { content, logo } = Astro.props;
+
+import Chevron from "@/components/symbols/Chevron.astro";
+import HomeLogo from "@/components/symbols/HomeLogo.astro";
+
+const symbols = {
+    Chevron,
+    HomeLogo
+}
+
+const LogoSymbol = symbols[logo];
+
+---
+<div class="flex items-center justify-center">
+    <span class="mr-1">{content}</span>
+    <span slot="logo"><LogoSymbol/></span>
+</div>
+
+<style>
+    span {
+        font-family: 'Gabarito', sans-serif;
+        font-weight: 500;
+        font-size: 1rem;
+        color: rgb(230, 230, 230)
+    }
+
+</style>

@@ -1,18 +1,47 @@
 ---
 import {twMerge} from "tailwind-merge";
-import DiscordLogo from "../symbols/DiscordLogo.astro";
-const { content, href, classes } = Astro.props;
-const buttonClass = twMerge('bg-neutral-400', 'rounded-lg', 'p-2', classes);
+
+const { content, href, logo, classes } = Astro.props;
+
+import HomeLogo from "@/components/symbols/HomeLogo.astro";
+import StoreAltLogo from "@/components/symbols/StoreAltLogo.astro";
+import StoreLogo from "@/components/symbols/StoreLogo.astro";
+import DiscordLogo from "@/components/symbols/DiscordLogo.astro";
+import Chevron from "@/components/symbols/Chevron.astro";
+
+const buttonClass = twMerge('bg-neutral-400', 'rounded-lg', 'p-3', 'shadow-lg', classes);
+
+const symbols = {
+    HomeLogo,
+    StoreAltLogo,
+    StoreLogo,
+    DiscordLogo,
+    Chevron
+}
+
+const Symbol = symbols[logo];
+
 ---
 <button class={ buttonClass }>
     {
-        content && !href && (
-            <div class="flex"><span class="mr-2 pt-1">{content}</span> <DiscordLogo class="ml-1 align-middle" /></div>
+        content && !href && logo && (
+            <div class="flex">
+                <span>{content}</span>
+                <span slot="logo" class="ml-2"><Symbol/></span>
+            </div>
         )
     }
     {
-        content && href && (
-                    <a href={ href }>{ content }</a>
+        content && !href && !logo && (
+                    <div class="flex">
+                        <span>{content}</span>
+                    </div>
         )
     }
 </button>
+
+<style>
+    button {
+        color: rgb(230, 230, 230);
+    }
+</style>

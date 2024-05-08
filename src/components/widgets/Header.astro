@@ -1,8 +1,23 @@
 ---
 import Button from "../ui/Button.astro";
 import DiscordLogo from "../symbols/DiscordLogo.astro";
+import MenuItem from "../ui/MenuItem.astro";
 ---
 <div class="flex justify-between items-center container">
     <p>SereneFields</p>
-    <Button content="DISCORD" classes="bg-discord-blurple hover:bg-discord-blurple-lighter shadow-lg gabarito-700 tracking-looser m-2 px-4"><DiscordLogo/></Button>
+    <div class="flex justify-center items-center">
+        <Button content="HOME" logo="HomeLogo" classes="bg-space-cadet hover:bg-space-cadet-lighter gabarito-800 tracking-looser m-2 px-4"></Button>
+        <Button content="ABOUT" classes="bg-space-cadet hover:bg-space-cadet-lighter gabarito-800 tracking-looser m-2 px-4"></Button>
+        <Button content="STORE" logo="StoreLogo" classes="bg-amber-600 hover:bg-amber-500 gabarito-800 tracking-looser m-2 px-4"></Button>
+    </div>
+    <Button content="DISCORD" logo="DiscordLogo" classes="bg-discord-blurple hover:bg-discord-blurple-lighter gabarito-800 tracking-looser m-2 px-4"></Button>
 </div>
+
+<style>
+    p {
+        font-family: 'Gabarito', sans-serif;
+        font-weight: 700;
+        font-size: 1.5rem;
+        color: rgb(230, 230, 230)
+    }
+</style>

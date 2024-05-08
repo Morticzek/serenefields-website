@@ -25,6 +25,8 @@ module.exports = {
       colors: {
         "discord-blurple": "#5865F2",
         "discord-blurple-lighter": "#5B69F6",
+        "space-cadet": "#1F2D3D",
+        "space-cadet-lighter": "#2B3345",
 
 
         border: "hsl(var(--border))",
