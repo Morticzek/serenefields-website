@@ -1,14 +1,17 @@
 ---
 import Button from "../ui/Button.astro";
-import DiscordLogo from "../symbols/DiscordLogo.astro";
 import MenuItem from "../ui/MenuItem.astro";
+import ClipboardField from "../ui/ClipboardField.astro";
 ---
 <div class="flex justify-between items-center container">
-    <p>SereneFields</p>
-    <div class="flex justify-center items-center">
-        <Button content="HOME" logo="HomeLogo" classes="bg-space-cadet hover:bg-space-cadet-lighter gabarito-800 tracking-looser m-2 px-4"></Button>
-        <Button content="ABOUT" classes="bg-space-cadet hover:bg-space-cadet-lighter gabarito-800 tracking-looser m-2 px-4"></Button>
-        <Button content="STORE" logo="StoreLogo" classes="bg-amber-600 hover:bg-amber-500 gabarito-800 tracking-looser m-2 px-4"></Button>
+    <ClipboardField text="serenefields.com"/>
+    <div class="flex justify-center items-center gap-8">
+        <!--<Button content="HOME" logo="HomeLogo" classes="bg-space-cadet hover:bg-space-cadet-lighter gabarito-800 tracking-looser m-2 px-4"></Button>-->
+        <!--<Button content="ABOUT" classes="bg-space-cadet hover:bg-space-cadet-lighter gabarito-800 tracking-looser m-2 px-4"></Button>-->
+        <!--<Button content="STORE" logo="StoreLogo" classes="bg-amber-600 hover:bg-amber-500 gabarito-800 tracking-looser m-2 px-4"></Button>-->
+        <MenuItem content="HOME" logo="HomeLogo" classes="m-2 px-4"></MenuItem>
+        <MenuItem content="STORE" logo="StoreLogo" classes="m-2" px-42></MenuItem>
+        <MenuItem content="ABOUT" classes="m-2 px-4"></MenuItem>
     </div>
     <Button content="DISCORD" logo="DiscordLogo" classes="bg-discord-blurple hover:bg-discord-blurple-lighter gabarito-800 tracking-looser m-2 px-4"></Button>
 </div>

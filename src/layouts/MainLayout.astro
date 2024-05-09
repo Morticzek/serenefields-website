@@ -10,7 +10,18 @@ const { title } = Astro.props;
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content="{{ site.description }}" />
-        <title>Title </title>
+        <title>
+            {
+            title && (
+                `${title} | SereneFields`
+            )
+            }
+            {
+            !title && (
+                `SereneFields`
+            )
+            }
+        </title>
     </head>
     <body class="bg-neutral-700 h-min-screen w-full">
         <main>

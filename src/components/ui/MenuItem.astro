@@ -1,11 +1,17 @@
 ---
 const { content, logo } = Astro.props;
 
-import Chevron from "@/components/symbols/Chevron.astro";
 import HomeLogo from "@/components/symbols/HomeLogo.astro";
+import StoreAltLogo from "@/components/symbols/StoreAltLogo.astro";
+import StoreLogo from "@/components/symbols/StoreLogo.astro";
+import DiscordLogo from "@/components/symbols/DiscordLogo.astro";
+import Chevron from "@/components/symbols/Chevron.astro";
 
 const symbols = {
     Chevron,
+    StoreLogo,
+    StoreAltLogo,
+    DiscordLogo,
     HomeLogo
 }
 
@@ -13,8 +19,12 @@ const LogoSymbol = symbols[logo];
 
 ---
 <div class="flex items-center justify-center">
-    <span class="mr-1">{content}</span>
-    <span slot="logo"><LogoSymbol/></span>
+    {
+        logo && (
+                    <span slot="logo"><LogoSymbol/></span>
+        )
+    }
+    <span class="ml-2">{content}</span>
 </div>
 
 <style>
