@@ -1,5 +1,6 @@
 ---
 import Header from "../components/widgets/Header.astro";
+import Footer from "../components/widgets/Footer.astro";
 const { title } = Astro.props;
 ---
 <html lang="en">
@@ -27,6 +28,7 @@ const { title } = Astro.props;
         <main>
             <Header title="{{ title }}" />
             <slot />
+            <Footer />
         </main>
     </body>
 </html>
