@@ -2,10 +2,13 @@
 import '@/assets/styles/globals.css';
 import '@/assets/styles/tailwind.css';
 import MainLayout from "@/layouts/MainLayout.astro";
-import PresentationCard from "../components/ui/PresentationCard.astro";
+import PresentationCard from "../components/ui/presentationcard.tsx";
+import PresentationText from "../components/ui/PresentationText.astro";
 ---
 <MainLayout title="About Us">
+    <PresentationText/>
+    <p class="text-2xl font-bold text-7xl mt-8 text-center">Meet The Team</p>
     <div class="min-h-[100vh]">
-        <PresentationCard/>
+        <PresentationCard client:load/>
     </div>
 </MainLayout>

@@ -20,8 +20,8 @@ const LogoSymbol = symbols[logo];
 ---
 <div class="flex items-center justify-center">
     {
-        logo && (
-                    <span slot="logo"><LogoSymbol/></span>
+        logo && href && (
+                    <span slot="logo"><a href={href}><LogoSymbol/></a></span>
         )
     }
     {
@@ -35,8 +35,11 @@ const LogoSymbol = symbols[logo];
     span {
         font-family: 'Gabarito', sans-serif;
         font-weight: 500;
-        font-size: 1rem;
+        font-size: 1.25rem;
         color: rgb(230, 230, 230)
+    }
+    span:hover {
+        color: rgb(255, 255, 255)
     }
 
 </style>

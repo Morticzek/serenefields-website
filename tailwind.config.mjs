@@ -28,7 +28,9 @@ module.exports = {
         "space-cadet": "#1F2D3D",
         "space-cadet-lighter": "#2B3345",
         "dark-green": "#1B4332",
+        "dark-green-hover": "#2a694e",
         "dark-green-lighter": "#1F4F3E",
+        "dark-green-lighter-hover": "#2e755c",
 
 
         border: "hsl(var(--border))",
