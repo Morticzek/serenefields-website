@@ -4,14 +4,14 @@ import MenuItem from "../ui/MenuItem.astro";
 import ClipboardField from "../ui/ClipboardField.astro";
 ---
 <header class="flex justify-between items-center container">
-    <ClipboardField text="serenefields.com"/>
+    <ClipboardField text="serenefields.com"}/>
     <div class="flex justify-center items-center gap-8">
         <!--<Button content="HOME" logo="HomeLogo" classes="bg-space-cadet hover:bg-space-cadet-lighter gabarito-800 tracking-looser m-2 px-4"></Button>-->
         <!--<Button content="ABOUT" classes="bg-space-cadet hover:bg-space-cadet-lighter gabarito-800 tracking-looser m-2 px-4"></Button>-->
         <!--<Button content="STORE" logo="StoreLogo" classes="bg-amber-600 hover:bg-amber-500 gabarito-800 tracking-looser m-2 px-4"></Button>-->
-        <MenuItem content="HOME" logo="HomeLogo" classes="m-2 px-4"></MenuItem>
-        <MenuItem content="STORE" logo="StoreLogo" classes="m-2" px-42></MenuItem>
-        <MenuItem content="ABOUT" classes="m-2 px-4"></MenuItem>
+        <MenuItem content="HOME" logo="HomeLogo" href="/" classes="m-2 px-4"></MenuItem>
+        <MenuItem content="STORE" logo="StoreLogo" href="/store" classes="m-2" px-42></MenuItem>
+        <MenuItem content="ABOUT" href="/about" classes="m-2 px-4"></MenuItem>
     </div>
     <Button content="DISCORD" logo="DiscordLogo" classes="bg-discord-blurple hover:bg-discord-blurple-lighter gabarito-800 tracking-looser m-2 px-4"></Button>
 </header>
@@ -23,4 +23,18 @@ import ClipboardField from "../ui/ClipboardField.astro";
         font-size: 1.5rem;
         color: rgb(230, 230, 230)
     }
+
+    .copied {
+    }
 </style>
+
+<script>
+    document.getElementById('clip').addEventListener('click', () => {
+        const ip = document.getElementById('ip');
+        navigator.clipboard.writeText(ip.innerText);
+        ip.innerText = 'Copied!';
+        setTimeout(() => {
+            ip.innerText = "serenefields.com";
+        }, 1000);
+    });
+</script>

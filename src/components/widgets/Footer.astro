@@ -1,6 +1,56 @@
 ---
-
+import Discord from '../../assets/svg/discord-logo.svg?url';
+import X from '../../assets/svg/x-logo.svg?url';
+import YouTube from '../../assets/svg/youtube-logo.svg?url';
+import Instagram from '../../assets/svg/instagram-logo.svg?url';
+import TikTok from '../../assets/svg/tiktok-logo.svg?url';
 ---
-<footer class="bg-violet-400 rounded-t flex justify-between items-center container mt-4">
-    Test
+<footer class="bg-neutral-800 rounded-t-2xl flex flex-1 justify-around items-center container mt-12 pt-12 pb-20 divide-x-2">
+    <div class="w-1/2">
+        <div class="mx-auto my-6 text-left w-full">
+        </div>
+        <div class="my-6">
+            <p class="text-neutral-400 gabarito-400">SereneFields 2024</p>
+            <p class="gabarito-400 text-color">Not affiliated with or endorsed by Mojang or Microsoft.</p>
+        </div>
+    </div>
+    <div class="flex justify-around  items-center w-1/2">
+        <div class="divide-y">
+            <div>
+                <p class="gabarito-600 text-neutral-400 mb-2">SereneFields</p>
+            </div>
+            <div>
+                <p class="gabarito-400 text-color my-1">Home</p>
+                <p class="gabarito-400 text-color my-1">About Us</p>
+                <p class="gabarito-400 text-color my-1">Store</p>
+            </div>
+        </div>
+        <div class="flex justify-center items-center h-full text-neutral-50">
+            <img src={Discord} alt="Discord Logo" class="w-8 h-8 mx-2">
+            <img src={X} alt="X Logo" class="w-8 h-8 mx-2">
+            <img src={YouTube} alt="YouTube Logo" class="w-8 h-8 mx-2">
+            <img src={Instagram} alt="Instagram Logo" class="w-8 h-8 mx-2">
+            <img src={TikTok} alt="TikTok Logo" class="w-8 h-8 mx-2">
+        </div>
+    </div>
 </footer>
+
+<style>
+    .gabarito-400 {
+        font-family: 'Gabarito', sans-serif;
+        font-weight: 400;
+    }
+
+    .gabarito-600 {
+        font-family: 'Gabarito', sans-serif;
+        font-weight: 600;
+    }
+
+    .text-color {
+        color: rgb(230, 230, 230);
+    }
+
+    svg {
+        color: rgb(230, 230, 230);
+    }
+</style>

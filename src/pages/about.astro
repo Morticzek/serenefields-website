@@ -1,7 +1,11 @@
 ---
 import '@/assets/styles/globals.css';
+import '@/assets/styles/tailwind.css';
 import MainLayout from "@/layouts/MainLayout.astro";
+import PresentationCard from "../components/ui/PresentationCard.astro";
 ---
 <MainLayout title="About Us">
-    Test
+    <div class="min-h-[100vh]">
+        <PresentationCard/>
+    </div>
 </MainLayout>

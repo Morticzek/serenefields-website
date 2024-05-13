@@ -29,8 +29,6 @@ module.exports = {
         "space-cadet-lighter": "#2B3345",
         "dark-green": "#1B4332",
         "dark-green-lighter": "#1F4F3E",
-        "left-grad": "#b2b358",
-        "right-grad": "#166076",
 
 
         border: "hsl(var(--border))",

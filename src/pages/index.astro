@@ -1,35 +1,19 @@
 ---
 import '@/assets/styles/globals.css';
+import '@/assets/styles/tailwind.css';
 import MainLayout from "../layouts/MainLayout.astro";
 import { Image } from "astro:assets";
 import heroImage from "../assets/image/hero_image.png";
 import HeroCarousel from "../components/widgets/hero-carousel";
+import WideTab from "../components/ui/WideTab.astro";
 ---
-<MainLayout>
+<MainLayout class="min-h-screen">
 	<div class="flex justify-center items-center mt-12 container">
 		<Image src={heroImage} alt="Test" class="h-fit rounded-xl border-2"/>
 	</div>
-	<!--<div class="flex justify-center items-center container">-->
-	<!--	<div class="flex justify-center items-center container bg-gradient-to-r from-neutral-500 to-neutral-200 rounded-xl mt-4">-->
-	<!--		<div class="flex justify-center items-center container tab-noise-tile">-->
-	<!--			<h2 class="text-center text-7xl font-bold my-10 bg-clip-text text-transparent bg-gradient-to-r from-amber-500 to-yellow-300">Welcome to SereneFields!</h2>-->
-	<!--		</div>-->
-	<!--	</div>-->
-	<!--</div>-->
-	<div class="flex justify-center items-center container mt-12">
-		<div class="container p-0 flex justify-center items-center bg-gradient-to-r from-amber-500 to-yellow-300 rounded-xl">
-			<div class="flex justify-center items-center w-full tab-noise-asfalt overflow-hidden">
-				<h2 class="thick-font text-center text-4xl xl:text-7xl font-bold my-10 bg-clip-text text-transparent bg-gradient-to-r from-neutral-800 to-neutral-900">Welcome to SereneFields!</h2>
-			</div>
-		</div>
-	</div>
-	<div class="flex justify-center items-center container mt-12">
-		<div class="container p-0 flex justify-center items-center bg-gradient-to-r from-amber-500 to-yellow-300 rounded-xl">
-			<div class="flex w-full tab-noise-asfalt overflow-hidden">
-				<h2 class="thick-font text-left ml-12 text-4xl xl:text-7xl font-bold my-10 bg-clip-text text-transparent bg-gradient-to-r from-neutral-800 to-neutral-900">Store</h2>
-			</div>
-		</div>
-	</div>
+	<WideTab text="Test" placement="left"/>
+	<WideTab text="Test" placement="center"/>
+	<WideTab text="Test" placement="right"/>
 	<div class="flex justify-center items-center container mt-12">
 		<HeroCarousel client:load/>
 	</div>
@@ -45,12 +29,12 @@ import HeroCarousel from "../components/widgets/hero-carousel";
 		font-family: 'Gabarito', sans-serif;
 		font-weight: 900;
 	}
-	.tab-noise-tile {
-		background: url('../assets/image/3px-tile.png');
+	.tab-noise-irongrip {
+		background: url('../assets/image/iron-grip.png');
 	}
 
 	.tab-noise-asfalt {
-		background: url('../assets/image/asfalt-dark.png');
+		background: url('../assets/image/cutcube.png');
 	}
 
 </style>

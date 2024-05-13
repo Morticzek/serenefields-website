@@ -1,5 +1,5 @@
 ---
-const { content, logo } = Astro.props;
+const { content, logo, href } = Astro.props;
 
 import HomeLogo from "@/components/symbols/HomeLogo.astro";
 import StoreAltLogo from "@/components/symbols/StoreAltLogo.astro";
@@ -24,7 +24,11 @@ const LogoSymbol = symbols[logo];
                     <span slot="logo"><LogoSymbol/></span>
         )
     }
-    <span class="ml-2">{content}</span>
+    {
+        href && (
+                    <span class="ml-2"><a href={href}>{content}</a></span>
+        )
+    }
 </div>
 
 <style>
