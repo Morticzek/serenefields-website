@@ -1,0 +1,23 @@
+---
+const { faqs } = Astro.props;
+---
+<div class="container mx-auto my-8">
+    <h2 class="text-4xl font-semibold text-center text-color mb-8">Frequently Asked Questions</h2>
+    <div class="space-y-4">
+        {faqs.map(faq => (
+                <div class="bg-neutral-800 text-color p-6 rounded-xl shadow-lg">
+                    <h3 class="text-2xl font-medium mb-2">{faq.question}</h3>
+                    <p class="text-lg font-normal">{faq.answer}</p>
+                </div>
+        ))}
+    </div>
+</div>
+
+<style>
+    .text-color {
+        color: rgb(230, 230, 230);
+    }
+    h2, h3, p {
+        font-family: 'Gabarito', sans-serif;
+    }
+</style>

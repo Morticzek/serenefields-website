@@ -5,10 +5,10 @@ import MainLayout from "@/layouts/MainLayout.astro";
 import PresentationCard from "../components/ui/presentationcard.tsx";
 import PresentationText from "../components/ui/PresentationText.astro";
 ---
-<MainLayout title="About Us">
+<MainLayout title="About Us" class="min-h-[100vh]">
     <PresentationText/>
     <p class="text-2xl font-bold text-7xl mt-8 text-center">Meet The Team</p>
-    <div class="min-h-[100vh]">
+    <div>
         <PresentationCard client:load/>
     </div>
 </MainLayout>

@@ -1,0 +1,108 @@
+---
+import '@/assets/styles/globals.css';
+import '@/assets/styles/tailwind.css';
+import StoreHeader from '../components/ui/store/StoreHeader.astro';
+import StoreGrid from '../components/ui/store/StoreGrid.astro';
+import MainLayout from "../layouts/MainLayout.astro";
+
+import Tier1 from '../assets/image/products/tier1.png?url';
+import Tier2 from '../assets/image/products/tier2.png?url';
+import Tier3 from '../assets/image/products/tier3.png?url';
+import Tier4 from '../assets/image/products/tier4.png?url';
+import StoreFAQ from "../components/ui/store/StoreFAQ.astro";
+
+// Sample product data
+const products = [
+    {
+        name: 'VIP Rank',
+        description: 'Receive the VIP Rank on the Hypixel Minecraft Server, Hypixel Forums, and Hypixel Discord.',
+        oldPrice: '17.99 USD',
+        newPrice: '9.60 USD',
+        image: Tier1,
+        perks: [
+            'Chat Prefix',
+            'Game Replays (/games) Command',
+            'No chat cooldown',
+            'Rank-specific Cosmetics',
+            'Event Silver Multiplier (1.5x)',
+            'Housing House Slots (2)',
+            'Priority Queue'
+        ]
+    },
+    {
+        name: 'VIP+ Rank',
+        description: 'Receive the VIP+ Rank on the Hypixel Minecraft Server, Hypixel Forums, and Hypixel Discord.',
+        oldPrice: '35.99 USD',
+        newPrice: '27.60 USD',
+        image: Tier2,
+        perks: [
+            'Chat Prefix',
+            'Game Replays (/games) Command',
+            'No chat cooldown',
+            'Rank-specific Cosmetics',
+            'Event Silver Multiplier (2x)',
+            'Housing House Slots (3)',
+            'Priority Queue'
+        ]
+    },
+    {
+        name: 'MVP Rank',
+        description: 'Receive the MVP Rank on the Hypixel Minecraft Server, Hypixel Forums, and Hypixel Discord.',
+        oldPrice: '53.99 USD',
+        newPrice: '45.60 USD',
+        image: Tier3,
+        perks: [
+            'Chat Prefix',
+            'Game Replays (/games) Command',
+            'No chat cooldown',
+            'Rank-specific Cosmetics',
+            'Event Silver Multiplier (2.5x)',
+            'Housing House Slots (3)',
+            'Priority Queue'
+        ]
+    },
+    {
+        name: 'MVP+ Rank',
+        description: 'Receive the MVP Rank on the Hypixel Minecraft Server, Hypixel Forums, and Hypixel Discord.',
+        oldPrice: '59.99 USD',
+        newPrice: '49.99 USD',
+        image: Tier4,
+        perks: [
+            'Chat Prefix',
+            'Game Replays (/games) Command',
+            'No chat cooldown',
+            'Rank-specific Cosmetics',
+            'Event Silver Multiplier (2.5x)',
+            'Housing House Slots (3)',
+            'Priority Queue'
+        ]
+    },
+    // Add more products as needed
+];
+
+// Sample FAQ data
+const faqs = [
+    {
+        question: 'How do I purchase a rank?',
+        answer: 'To purchase a rank, click on the BUY button next to the rank you want and follow the instructions.'
+    },
+    {
+        question: 'What payment methods are accepted?',
+        answer: 'We accept various payment methods including credit cards, PayPal, and more.'
+    },
+    {
+        question: 'Can I upgrade my rank?',
+        answer: 'Yes, you can upgrade your rank at any time. Simply purchase the desired rank and the system will apply the upgrade.'
+    },
+    // Add more FAQs as needed
+];
+---
+
+<MainLayout>
+    <StoreHeader
+            title="Welcome to the Store"
+            description="Browse through our collection of amazing products. Click on each product to learn more and make a purchase."
+    />
+    <StoreGrid products={products} />
+    <StoreFAQ faqs={faqs} />
+</MainLayout>
