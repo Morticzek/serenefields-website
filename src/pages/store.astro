@@ -14,68 +14,84 @@ import StoreFAQ from "../components/ui/store/StoreFAQ.astro";
 // Sample product data
 const products = [
     {
-        name: 'VIP Rank',
-        description: 'Receive the VIP Rank on the Hypixel Minecraft Server, Hypixel Forums, and Hypixel Discord.',
-        oldPrice: '17.99 USD',
-        newPrice: '9.60 USD',
+        name: 'Lord',
+        description: 'Receive the Lord Rank on the Server and the SereneFields Discord.',
+        //oldPrice: '17.99 USD',
+        newPrice: '12.99 USD',
+        // newPrice: '??.?? USD',
         image: Tier1,
         perks: [
             'Chat Prefix',
-            'Game Replays (/games) Command',
-            'No chat cooldown',
-            'Rank-specific Cosmetics',
-            'Event Silver Multiplier (1.5x)',
-            'Housing House Slots (2)',
-            'Priority Queue'
-        ]
+            'No Chat Cooldown',
+            'Rank-Specific Cosmetics',
+            // '???? ?????',
+            // '?? ???? ????????',
+            // '????-???????? ??????????'
+        ],
+        color: "text-[#85cb5d]",
+        border: "border-[#85cb5d]"
     },
     {
-        name: 'VIP+ Rank',
-        description: 'Receive the VIP+ Rank on the Hypixel Minecraft Server, Hypixel Forums, and Hypixel Discord.',
-        oldPrice: '35.99 USD',
-        newPrice: '27.60 USD',
+        name: 'Baron',
+        description: 'Receive the Baron Rank on the Server and the SereneFields Discord.',
+        //oldPrice: '35.99 USD',
+        newPrice: '29.99 USD',
+        // newPrice: '??.?? USD',
         image: Tier2,
         perks: [
             'Chat Prefix',
-            'Game Replays (/games) Command',
-            'No chat cooldown',
-            'Rank-specific Cosmetics',
-            'Event Silver Multiplier (2x)',
-            'Housing House Slots (3)',
-            'Priority Queue'
-        ]
+            'No Chat Cooldown',
+            'Rank-Specific Cosmetics',
+            'Free Weekly Cosmetics',
+            // '???? ?????',
+            // '?? ???? ????????',
+            // '????-???????? ??????????',
+            // '???? ?????? ??????????'
+        ],
+        color: "text-[#77a6ee]",
+        border: "border-[#77a6ee]"
     },
     {
-        name: 'MVP Rank',
-        description: 'Receive the MVP Rank on the Hypixel Minecraft Server, Hypixel Forums, and Hypixel Discord.',
-        oldPrice: '53.99 USD',
-        newPrice: '45.60 USD',
+        name: 'Duke',
+        description: 'Receive the Duke Rank on the Server and the SereneFields Discord.',
+        //oldPrice: '53.99 USD',
+        newPrice: '69.99 USD',
+        // newPrice: '??.?? USD',
         image: Tier3,
         perks: [
             'Chat Prefix',
-            'Game Replays (/games) Command',
-            'No chat cooldown',
-            'Rank-specific Cosmetics',
-            'Event Silver Multiplier (2.5x)',
-            'Housing House Slots (3)',
-            'Priority Queue'
-        ]
+            'No Chat Cooldown',
+            'Rank-Specific Cosmetics',
+            'Free Weekly Cosmetics',
+            'Access to the Beta Server',
+            'Larger Farm Plot',
+            // '???? ?????',
+            // '?? ???? ????????',
+            // '????-???????? ??????????',
+            // '???? ?????? ??????????',
+            // '?????? ?? ??? ??????',
+            // '?????? ???? ????'
+        ],
+        color: "text-[#dea95d]",
+        border: "border-[#dea95d]"
     },
     {
-        name: 'MVP+ Rank',
-        description: 'Receive the MVP Rank on the Hypixel Minecraft Server, Hypixel Forums, and Hypixel Discord.',
-        oldPrice: '59.99 USD',
-        newPrice: '49.99 USD',
+        name: ' Land Grant ️',
+        description: 'This subscription allows any player, regardless of rank, to freely build on their farm plot.',
+        //oldPrice: '59.99 USD',
+        newPrice: '9.99 USD Monthly',
+        // newPrice: '?.?? USD monthly',
         image: Tier4,
         perks: [
-            'Chat Prefix',
-            'Game Replays (/games) Command',
-            'No chat cooldown',
-            'Rank-specific Cosmetics',
-            'Event Silver Multiplier (2.5x)',
-            'Housing House Slots (3)',
-            'Priority Queue'
-        ]
+            'Build on Your Farm Without Restrictions',
+            'Exclusive Rank Suffix',
+            // '???? ?? ??? ???? ?????????????',
+            // '????????? ???? ???????',
+        ],
+        color: "text-[#cf6364]",
+        border: "border-[#cf6364] border-8",
+        tag: "FULL ACCESS",
+        background: "bg-[#cf6364]"
     },
     // Add more products as needed
 ];
@@ -100,8 +116,8 @@ const faqs = [
 
 <MainLayout>
     <StoreHeader
-            title="Welcome to the Store"
-            description="Browse through our collection of amazing products. Click on each product to learn more and make a purchase."
+            title="Welcome to the SereneFields Store"
+            description="Take a look at our available ranks and subscriptions, granting you access to exclusive perks and features."
     />
     <StoreGrid products={products} />
     <StoreFAQ faqs={faqs} />
