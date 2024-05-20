@@ -1,0 +1,16 @@
+---
+// Hero.astro
+const { backgroundImage, title, subtitle, ctaPrimary, ctaSecondary } = Astro.props;
+---
+
+<section class="relative bg-cover bg-center h-screen" style={`background-image: url(${backgroundImage});`}>
+    <div class="absolute inset-0 bg-black opacity-50"></div>
+    <div class="relative z-10 flex flex-col items-center justify-center h-full text-white text-center">
+        <h1 class="text-5xl font-bold mb-4">{title}</h1>
+        <p class="text-2xl mb-8">{subtitle}</p>
+        <div class="flex space-x-4">
+            <a href="#join" class="bg-yellow-500 hover:bg-yellow-300 text-black px-6 py-3 font-bold rounded-md">{ctaPrimary}</a>
+            <a href="#learn-more" class="bg-gray-700 hover:bg-gray-500 text-white px-6 py-3 font-bold rounded-md">{ctaSecondary}</a>
+        </div>
+    </div>
+</section>

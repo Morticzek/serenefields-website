@@ -2,21 +2,76 @@
 import '@/assets/styles/globals.css';
 import '@/assets/styles/tailwind.css';
 import MainLayout from "../layouts/MainLayout.astro";
-import { Image } from "astro:assets";
-import heroImage from "../assets/image/hero_image.png";
 import HeroCarousel from "../components/widgets/hero-carousel";
-import WideTab from "../components/ui/WideTab.astro";
+import Features from "../components/widgets/Features.astro";
+
+const features = [
+	{
+		icon: "🌾",
+		title: "Custom Crops and Plants",
+		description: "Grow unique crops and plants with special properties and uses, adding depth to your farming experience.",
+	},
+	{
+		icon: "🎉",
+		title: "Seasonal Events and Festivals",
+		description: "Participate in seasonal events and festivals that bring the community together with themed activities and rewards.",
+	},
+	{
+		icon: "🐄",
+		title: "Animal Husbandry",
+		description: "Raise and care for a variety of animals, from chickens to cows, each with their own benefits and products.",
+	},
+	{
+		icon: "👩‍🌾👨‍🌾",
+		title: "Cooperative Farming",
+		description: "Team up with friends to manage farms, share resources, and complete farming tasks more efficiently.",
+	},
+	{
+		icon: "💰",
+		title: "Player-Driven Economy",
+		description: "Engage in a player-driven economy where you can buy, sell, and trade goods with other players to build your wealth.",
+	},
+	{
+		icon: "🗺️",
+		title: "Unique Quests and Adventures",
+		description: "Embark on quests and adventures that challenge your farming and survival skills, with unique rewards and storylines.",
+	},
+	{
+		icon: "🛠️",
+		title: "Crafting and Custom Tools",
+		description: "Create custom tools and equipment to enhance your farming efficiency and tackle new challenges.",
+	},
+	{
+		icon: "🌍",
+		title: "Environmental Interactions",
+		description: "Experience a dynamic world where the environment reacts to your actions, with changing weather, seasons, and wildlife.",
+	},
+	{
+		icon: "🏡",
+		title: "Player Housing and Decoration",
+		description: "Build and decorate your own home with a variety of furniture and decorations to create a cozy retreat.",
+	},
+	{
+		icon: "🏪",
+		title: "Community Market",
+		description: "Visit the community market to trade goods, showcase your products, and interact with other players.",
+	},
+];
 ---
 <MainLayout class="min-h-screen">
-	<div class="flex justify-center items-center mt-12 container">
-		<Image src={heroImage} alt="Test" class="h-fit rounded-xl border-2"/>
-	</div>
-	<WideTab text="Test" placement="left"/>
-	<WideTab text="Test" placement="center"/>
-	<WideTab text="Test" placement="right"/>
 	<div class="flex justify-center items-center container mt-12">
 		<HeroCarousel client:load/>
 	</div>
+	<p class="flex text-7xl justify-center items-center container mt-12">
+		Welcome to SereneFields!
+	</p>
+	<p class="flex text-3xl smaller-font justify-center items-center container mt-12">
+		An open-world farming and life simulation game where you can build, grow, and thrive in a vibrant community.
+	</p>
+	<!--<div class="flex justify-center items-center mt-12 container">-->
+	<!--	<Image src={heroImage} alt="Test" class="h-fit rounded-xl border-2"/>-->
+	<!--</div>-->
+	<Features features={features}/>
 </MainLayout>
 
 <style>
@@ -24,6 +79,11 @@ import WideTab from "../components/ui/WideTab.astro";
 		font-family: 'Gabarito', sans-serif;
 		font-weight: 700;
 		color: rgb(230, 230, 230)
+	}
+	.smaller-font {
+		font-family: 'Gabarito', sans-serif;
+		font-weight: 400;
+
 	}
 	.thick-font {
 		font-family: 'Gabarito', sans-serif;

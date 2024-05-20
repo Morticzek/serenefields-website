@@ -1,0 +1,18 @@
+---
+// CallToAction.astro
+const { ctaText, ctaButton } = Astro.props;
+---
+
+<section id="join" class="py-20 bg-space-cadet-lighter text-black text-center container mx-auto">
+    <h2 class="text-4xl font-bold mb-8">{ctaText}</h2>
+    <a href="#join" class="bg-black hover:bg-gray-700 text-white px-8 py-4 font-bold rounded-md">{ctaButton}</a>
+</section>
+
+<style>
+    p, h2 {
+        font-family: 'Gabarito', sans-serif;
+        font-weight: 700;
+        font-size: 3.5rem;
+        color: rgb(230, 230, 230)
+    }
+</style>

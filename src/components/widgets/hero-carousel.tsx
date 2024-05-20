@@ -17,7 +17,7 @@ export default function HeroCarousel() {
     const image_paths = [img1, img2, img3];
 
     return (
-        <Carousel className="w-full max-w-7xl transform hover:scale-105 transition duration-350 shadow" opts={{
+        <Carousel className="w-full max-w-7xl shadow rounded-xl" opts={{
             align: "start",
             loop: true,
         }} plugins={[
