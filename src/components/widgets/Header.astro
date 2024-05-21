@@ -4,17 +4,34 @@ import Button from "../ui/Button.astro";
 import MenuItem from "../ui/MenuItem.astro";
 import ClipboardField from "../ui/ClipboardField.astro";
 ---
-<header class="flex justify-between items-center container">
-    <ClipboardField text="play.serenefields.com"}/>
-    <div class="flex justify-center items-center gap-8">
-        <!--<Button content="HOME" logo="HomeLogo" classes="bg-space-cadet hover:bg-space-cadet-lighter gabarito-800 tracking-looser m-2 px-4"></Button>-->
-        <!--<Button content="ABOUT" classes="bg-space-cadet hover:bg-space-cadet-lighter gabarito-800 tracking-looser m-2 px-4"></Button>-->
-        <!--<Button content="STORE" logo="StoreLogo" classes="bg-amber-600 hover:bg-amber-500 gabarito-800 tracking-looser m-2 px-4"></Button>-->
-        <MenuItem content="HOME" logo="HomeLogo" href="/" classes="m-2 px-4"></MenuItem>
-        <MenuItem content="STORE" logo="StoreLogo" href="/store" classes="m-2" px-42></MenuItem>
-        <MenuItem content="ABOUT" logo="Chevron" href="/about" classes="m-2 px-4"></MenuItem>
+<header>
+    <div class="block lg:hidden">
+        <ClipboardField text="play.serenefields.com"/>
+        <div class="flex justify-center items-center gap-8 pt-5">
+            <!--<Button content="HOME" logo="HomeLogo" classes="bg-space-cadet hover:bg-space-cadet-lighter gabarito-800 tracking-looser m-2 px-4"></Button>-->
+            <!--<Button content="ABOUT" classes="bg-space-cadet hover:bg-space-cadet-lighter gabarito-800 tracking-looser m-2 px-4"></Button>-->
+            <!--<Button content="STORE" logo="StoreLogo" classes="bg-amber-600 hover:bg-amber-500 gabarito-800 tracking-looser m-2 px-4"></Button>-->
+            <MenuItem content="HOME" logo="HomeLogo" href="/" classes="m-2 px-4"></MenuItem>
+            <MenuItem content="STORE" logo="StoreLogo" href="/store" classes="m-2" px-42></MenuItem>
+            <MenuItem content="ABOUT" logo="Chevron" href="/about" classes="m-2 px-4"></MenuItem>
+        </div>
+        <div class="flex items-center justify-center pt-5">
+            <Button content="DISCORD" href="https://discord.gg/44cc8ary4x" logo="DiscordLogo" classes="bg-discord-blurple hover:bg-discord-blurple-lighter gabarito-800 tracking-looser m-2 px-4"></Button>
+        </div>
     </div>
-    <Button content="DISCORD" href="https://discord.gg/44cc8ary4x" logo="DiscordLogo" classes="bg-discord-blurple hover:bg-discord-blurple-lighter gabarito-800 tracking-looser m-2 px-4"></Button>
+    <div class="hidden lg:flex justify-between items-center container">
+        <ClipboardField text="play.serenefields.com"}/>
+        <div class="flex justify-center items-center gap-8">
+            <!--<Button content="HOME" logo="HomeLogo" classes="bg-space-cadet hover:bg-space-cadet-lighter gabarito-800 tracking-looser m-2 px-4"></Button>-->
+            <!--<Button content="ABOUT" classes="bg-space-cadet hover:bg-space-cadet-lighter gabarito-800 tracking-looser m-2 px-4"></Button>-->
+            <!--<Button content="STORE" logo="StoreLogo" classes="bg-amber-600 hover:bg-amber-500 gabarito-800 tracking-looser m-2 px-4"></Button>-->
+            <MenuItem content="HOME" logo="HomeLogo" href="/" classes="m-2 px-4"></MenuItem>
+            <MenuItem content="STORE" logo="StoreLogo" href="/store" classes="m-2" px-42></MenuItem>
+            <MenuItem content="ABOUT" logo="Chevron" href="/about" classes="m-2 px-4"></MenuItem>
+        </div>
+        <Button content="DISCORD" href="https://discord.gg/44cc8ary4x" logo="DiscordLogo" classes="bg-discord-blurple hover:bg-discord-blurple-lighter gabarito-800 tracking-looser m-2 px-4"></Button>
+
+    </div>
 </header>
 
 <style>
