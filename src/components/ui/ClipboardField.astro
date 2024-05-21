@@ -1,6 +1,5 @@
 ---
-
-import {twMerge} from "tailwind-merge";
+import { twMerge } from "tailwind-merge";
 import ClipboardLogo from "../symbols/ClipboardLogo.astro";
 
 const { text, innerClasses, outerClasses } = Astro.props;
@@ -8,7 +7,7 @@ const { text, innerClasses, outerClasses } = Astro.props;
 <div class={twMerge(outerClasses, 'bg-dark-green', 'rounded-lg', 'p-2.5', 'flex', 'justify-center', 'items-center', 'cursor-pointer')}>
     <span class="pr-2">IP:</span>
     <span id="ip" class={twMerge(innerClasses, 'bg-dark-green-lighter', 'text-lg', 'text-center', 'p-0.5', 'px-4','rounded-lg', 'tracking-widest', 'w-5/6')}>
-        { text }
+        {text}
     </span>
     <span id="clip" class="pl-2"><ClipboardLogo/></span>
 </div>
@@ -18,7 +17,7 @@ const { text, innerClasses, outerClasses } = Astro.props;
         font-family: 'Gabarito', sans-serif;
         font-weight: 500;
         font-size: 1rem;
-        color: rgb(230, 230, 230)
+        color: rgb(230, 230, 230);
     }
     span:hover {
         color: rgb(255, 255, 255);

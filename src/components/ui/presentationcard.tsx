@@ -10,12 +10,14 @@ import MorticzekHead from '../../assets/image/skins/morticzek_head.png?url';
 import MivosVanosHead from '../../assets/image/skins/mivosvanos_head.png?url';
 import QxertyHead from '../../assets/image/skins/qxerty_head.png?url';
 import JustWhenHead from '../../assets/image/skins/justwhen_head.png?url';
+import Chl0evHead from '../../assets/image/skins/chl0ev_head.png?url';
 
 import Frozenman from '../../assets/image/skins/frozenman.webp?url';
 import Morticzek from '../../assets/image/skins/morticzek.webp?url';
 import MivosVanos from '../../assets/image/skins/mivosvanos.webp?url';
 import Qxerty from '../../assets/image/skins/qxerty.webp?url';
 import JustWhen from '../../assets/image/skins/justwhen.webp?url';
+import Chl0ev from '../../assets/image/skins/chl0ev.webp?url';
 
 const heads = {
     frozenman: FrozenmanHead,
@@ -23,6 +25,7 @@ const heads = {
     mivosvanos: MivosVanosHead,
     qxerty: QxertyHead,
     justwhen: JustWhenHead,
+    chl0ev: Chl0evHead,
 };
 
 const names: { [key: string]: string } = {
@@ -31,6 +34,7 @@ const names: { [key: string]: string } = {
     mivosvanos: 'MivosVanos',
     qxerty: 'Qxerty',
     justwhen: 'JustWhen',
+    chl0ev: 'chl0ev',
 };
 
 const descriptions: { [key: string]: string } = {
@@ -39,6 +43,7 @@ const descriptions: { [key: string]: string } = {
     mivosvanos: 'Hi, I’m MivosVanos! I specialize in Minecraft map building, and I love bringing creative worlds to life. Can’t wait for you to explore them!',
     qxerty: 'Hi there, I’m Qxerty! I’m the storyline writer and game master, weaving narratives that keep you on the edge of your seat. Get ready for some unforgettable adventures!',
     justwhen: 'Hello, I’m JustWhen! As the Manager and storyline creator, I craft the adventures and keep everything running smoothly. Let’s dive into some epic tales!',
+    chl0ev: 'Hey, I’m Chloe! I’m both a designer and map builder, blending aesthetics with creativity to make our world visually stunning. Excited for you to see what we’ve made!',
 };
 
 const images: { [key: string]: string } = {
@@ -47,6 +52,7 @@ const images: { [key: string]: string } = {
     mivosvanos: MivosVanos,
     qxerty: Qxerty,
     justwhen: JustWhen,
+    chl0ev: Chl0ev,
 };
 
 const roles: { [key: string]: string } = {
@@ -55,18 +61,11 @@ const roles: { [key: string]: string } = {
     mivosvanos: 'Builder',
     qxerty: 'Game Master',
     justwhen: 'Game Master',
-};
-
-const colors: { [key: string]: string } = {
-    frozenman: 'text-red-700',
-    morticzek: 'text-red-500',
-    mivosvanos: 'text-yellow-500',
-    qxerty: 'text-orange-500',
-    justwhen: 'text-orange-500',
+    chl0ev: 'Game Master',
 };
 
 const isContentTeam = (role: string) => {
-    return role === 'Game Master' || role === 'Builder' || role === 'Developer';
+    return role === 'Game Master' || role === 'Builder' || role === 'Developer' || role === 'Designer';
 }
 
 const PresentationCard = () => {
