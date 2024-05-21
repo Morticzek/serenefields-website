@@ -1,4 +1,5 @@
 // @ts-nocheck
+// TO-DO: Add autoplay with delay to the carousel
 
 import React, { useState } from 'react';
 import { twMerge } from "tailwind-merge";
