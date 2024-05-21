@@ -1,4 +1,5 @@
 ---
+// @ts-nocheck
 import Button from "../ui/Button.astro";
 import MenuItem from "../ui/MenuItem.astro";
 import ClipboardField from "../ui/ClipboardField.astro";
@@ -29,12 +30,28 @@ import ClipboardField from "../ui/ClipboardField.astro";
 </style>
 
 <script>
-    document.getElementById('clip').addEventListener('click', () => {
-        const ip = document.getElementById('ip');
-        navigator.clipboard.writeText(ip.innerText);
-        ip.innerText = 'Copied!';
-        setTimeout(() => {
-            ip.innerText = "serenefields.com";
-        }, 1000);
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const clipButton = document.getElementById('clip');
+        if (clipButton) {
+            clipButton.addEventListener('click', () => {
+                const ip = document.getElementById('ip');
+                if (ip) {
+                    navigator.clipboard.writeText(ip.innerText)
+                        .then(() => {
+                            ip.innerText = 'Copied!';
+                            setTimeout(() => {
+                                ip.innerText = "serenefields.com";
+                            }, 1000);
+                        })
+                        .catch(err => {
+                            console.error('Failed to copy text: ', err);
+                        });
+                } else {
+                    console.error('Element with ID "ip" not found.');
+                }
+            });
+        } else {
+            console.error('Element with ID "clip" not found.');
+        }
     });
 </script>
