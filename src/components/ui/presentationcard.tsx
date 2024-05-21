@@ -34,11 +34,11 @@ const names: { [key: string]: string } = {
 };
 
 const descriptions: { [key: string]: string } = {
-    frozenman: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id porttitor metus, sed egestas ex. In hac habitasse platea dictumst. Maecenas quis nisi nibh. Fusce sagittis urna quis nibh lacinia, a sollicitudin sapien sagittis. Phasellus porttitor, tellus ac dignissim elementum, risus ex auctor dui, id commodo risus mi vitae metus. Donec blandit quam a purus faucibus condimentum.',
-    morticzek: 'Description for Morticzek.',
-    mivosvanos: 'Description for MivosVanos.',
-    qxerty: 'Description for Qxerty.',
-    justwhen: 'Description for JustWhen.',
+    frozenman: 'Hey there, I’m Frozenman! As the owner of the server and a software engineer, I’m doing my best to make a fun game for everyone to enjoy. Let’s build something amazing together!',
+    morticzek: 'Hey, I’m Morticzek! I handle website and game development, ensuring everything works seamlessly. I’m thrilled to be part of this awesome team and hope you enjoy your time with us!',
+    mivosvanos: 'Hi, I’m MivosVanos! I specialize in Minecraft map building, and I love bringing creative worlds to life. Can’t wait for you to explore them!',
+    qxerty: 'Hi there, I’m Qxerty! I’m the storyline writer and game master, weaving narratives that keep you on the edge of your seat. Get ready for some unforgettable adventures!',
+    justwhen: 'Hello, I’m JustWhen! As the Manager and storyline creator, I craft the adventures and keep everything running smoothly. Let’s dive into some epic tales!',
 };
 
 const images: { [key: string]: string } = {
@@ -124,8 +124,8 @@ const PresentationCard = () => {
                             )
                         }
                     </div>
-                    <h2 className={twMerge(styles.h2, 'mb-4')}>{selectedName}</h2>
-                    <p className={twMerge(styles.p, 'pt-4')}>{selectedDescription}</p>
+                    <h5 className={twMerge(styles.h2, 'mb-4')}>{selectedName}</h5>
+                    <h6 className={twMerge(styles.p, 'pt-4')}>{selectedDescription}</h6>
                 </div>
                 <div className="flex justify-center w-1/2 items-center text-color p-6">
                     <img

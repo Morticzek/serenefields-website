@@ -39,6 +39,14 @@ const Symbol = symbols[logo];
                     </div>
         )
     }
+    {
+        content && href && logo && (
+                    <a href={href} class="flex">
+                        <span>{content}</span>
+                        <span slot="logo" class="ml-2"><Symbol/></span>
+                    </a>
+        )
+    }
 </button>
 
 <style>
