@@ -30,8 +30,7 @@ export default function HeroCarousel() {
                     <CarouselItem key={index}>
                         <div className="min-w-[450px] max-w-7xl">
                             <img src={image} alt="Image" className="
-                                    rounded-xl object-cover contain
-                                    "width={1920}/>
+                                    rounded-xl object-cover contain" width={1920}/>
                         </div>
                     </CarouselItem>
                 ))}

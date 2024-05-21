@@ -4,6 +4,26 @@ import '@/assets/styles/tailwind.css';
 import MainLayout from "../layouts/MainLayout.astro";
 import HeroCarousel from "../components/widgets/hero-carousel";
 import Features from "../components/widgets/Features.astro";
+import SwiperCarousel from "../components/ui/swipercarousel";
+
+import img1 from "@/assets/image/carousel/img1.png?url";
+import img2 from "@/assets/image/carousel/img2.png?url";
+import img3 from "@/assets/image/carousel/img3.png?url";
+
+const items = [
+	{
+		image: img1,
+		text: "Unique farming experience...",
+	},
+	{
+		image: img2,
+		text: "Engaging storyline...",
+	},
+	{
+		image: img3,
+		text: "And many more...",
+	},
+];
 
 const features = [
 	{
@@ -60,13 +80,14 @@ const features = [
 ---
 <MainLayout class="min-h-screen">
 	<div class="flex justify-center items-center container mt-12">
-		<HeroCarousel client:load/>
+		<!--<HeroCarousel client:load/>-->
+		<SwiperCarousel items={items} client:load/>
 	</div>
 	<p class="flex text-7xl justify-center items-center container mt-12">
 		Welcome to SereneFields!
 	</p>
 	<p class="flex text-3xl smaller-font justify-center items-center container mt-12">
-		An open-world farming and life simulation game where you can build, grow, and thrive in a vibrant community.
+
 	</p>
 	<!--<div class="flex justify-center items-center mt-12 container">-->
 	<!--	<Image src={heroImage} alt="Test" class="h-fit rounded-xl border-2"/>-->
