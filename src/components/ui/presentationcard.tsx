@@ -87,23 +87,27 @@ const PresentationCard = () => {
 
     return (
         <div className="container mx-auto p-4">
-            <div className="flex justify-center bg-neutral-800 w-fit mx-auto m-4 text-color px-8 py-4 rounded-xl shadow-lg">
-                {Object.keys(heads).map((name, index) => (
-                    <div key={index} className="flex justify-center items-center mx-3">
-                        <button
-                            className="w-16 h-16 rounded-full border-2 border-transparent hover:border-gray-400 transition-colors duration-300"
-                            onClick={() => handleButtonClick(name)}
-                        >
-                            <img
-                                src={heads[name]}
-                                alt="Head"
-                                className="w-16 h-16 rounded-full"
-                            />
-                        </button>
-                    </div>
-                ))}
+            <div
+                className="flex justify-center bg-neutral-800 w-fit mx-auto m-4 text-color px-8 py-4 rounded-xl shadow-lg">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                    {Object.keys(heads).map((name, index) => (
+                        <div key={index} className="flex justify-center items-center mx-3">
+                            <button
+                                className="w-16 h-16 rounded-full border-2 border-transparent hover:border-gray-400 transition-colors duration-300"
+                                onClick={() => handleButtonClick(name)}
+                            >
+                                <img
+                                    src={heads[name]}
+                                    alt="Head"
+                                    className="w-16 h-16 rounded-full"
+                                />
+                            </button>
+                        </div>
+                    ))}
+                </div>
             </div>
-            <div className="relative flex justify-center w-full lg:w-2/3 container mx-auto bg-neutral-800 rounded-xl shadow-lg divide-x-4 px-4">
+            <div
+                className="hidden md:flex relative justify-center w-full lg:w-2/3 container mx-auto bg-neutral-800 rounded-xl shadow-lg divide-x-4 px-4">
                 <div className="w-1/2 text-left divide-y-2 pr-4 p-6">
                     <div>
                         {
@@ -130,6 +134,32 @@ const PresentationCard = () => {
                         alt="Skin"
                         className="rounded-lg p-2"
                     />
+                </div>
+            </div>
+            <div className="block md:hidden">
+                <div
+                    className="relative flex flex-col justify-center w-full lg:w-2/3 container mx-auto bg-neutral-800 rounded-xl shadow-lg px-4">
+                    <div className="flex justify-center items-center w-full lg:w-1/2 text-color p-6">
+                        <img
+                            src={selectedImage}
+                            alt="Skin"
+                            className="rounded-lg p-2 max-h-[500px]"
+                        />
+                    </div>
+                    <div className="w-full lg:w-1/2 text-left p-6 divide-y-2">
+                        <div>
+                            {selectedIsContentTeam && (
+                                <h3 className={twMerge(styles.h3, 'text-yellow-300')}>Content Team</h3>
+                            )}
+                            {selectedRole === 'Owner' ? (
+                                <h3 className={twMerge(styles.h3, 'mb-1', 'text-red-700')}>Owner</h3>
+                            ) : (
+                                <h4 className={twMerge(styles.h3, 'mb-4')}>{selectedRole}</h4>
+                            )}
+                        </div>
+                        <h5 className={twMerge(styles.h2, 'mb-4')}>{selectedName}</h5>
+                        <h6 className={twMerge(styles.p, 'pt-4')}>{selectedDescription}</h6>
+                    </div>
                 </div>
             </div>
         </div>

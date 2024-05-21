@@ -19,7 +19,7 @@ const SwiperCarousel: React.FC<CarouselProps> = ({ items }) => {
     const [currentText, setCurrentText] = useState(items[0].text);
 
     return (
-        <div className="carousel-container mx-auto max-w-lg lg:max-w-3xl xl:max-w-5xl p-6 bg-neutral-800 shadow-lg rounded-2xl">
+        <div className="carousel-container mx-auto max-w-md md:max-w-lg lg:max-w-3xl xl:max-w-5xl p-6 bg-neutral-800 shadow-lg rounded-2xl">
             <Swiper
                 spaceBetween={50}
                 slidesPerView={1}
@@ -34,7 +34,7 @@ const SwiperCarousel: React.FC<CarouselProps> = ({ items }) => {
                     </SwiperSlide>
                 ))}
             </Swiper>
-            <div className="carousel-text text-center mt-4 subtitle-text text-[#d6d6d6] font-[700] text-3xl">{currentText}</div>
+            <div className="carousel-text text-center mt-4 subtitle-text text-[#d6d6d6] font-[700] text-xl md:text-3xl">{currentText}</div>
         </div>
     );
 };

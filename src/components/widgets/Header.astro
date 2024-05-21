@@ -34,12 +34,27 @@ import ClipboardField from "../ui/ClipboardField.astro";
 </style>
 
 <script>
-    document.getElementById('clip').addEventListener('click', () => {
-        const ip = document.getElementById('ip');
-        navigator.clipboard.writeText(ip.innerText);
-        ip.innerText = 'Copied!';
-        setTimeout(() => {
-            ip.innerText = "play.serenefields.com";
-        }, 1000);
+    document.addEventListener('DOMContentLoaded', () => {
+        const clipButton = document.getElementById('clip');
+        const ipElement = document.getElementById('ip');
+
+        if (clipButton && ipElement) {
+            clipButton.addEventListener('click', () => {
+                if (ipElement) {
+                    navigator.clipboard.writeText(ipElement.innerText)
+                        .then(() => {
+                            ipElement.innerText = 'Copied!';
+                            setTimeout(() => {
+                                ipElement.innerText = "play.serenefields.com";
+                            }, 1000);
+                        })
+                        .catch(err => {
+                            console.error('Failed to copy text:', err);
+                        });
+                }
+            });
+        } else {
+            console.error('Element with ID "clip" or "ip" not found.');
+        }
     });
 </script>
