@@ -11,11 +11,11 @@ import MivosVanosHead from '../../assets/image/skins/mivosvanos_head.png?url';
 import QxertyHead from '../../assets/image/skins/qxerty_head.png?url';
 import JustWhenHead from '../../assets/image/skins/justwhen_head.png?url';
 
-import Frozenman from '../../assets/image/skins/frozenman.png?url';
-import Morticzek from '../../assets/image/skins/morticzek.png?url';
-import MivosVanos from '../../assets/image/skins/mivosvanos.png?url';
-import Qxerty from '../../assets/image/skins/qxerty.png?url';
-import JustWhen from '../../assets/image/skins/justwhen.png?url';
+import Frozenman from '../../assets/image/skins/frozenman.webp?url';
+import Morticzek from '../../assets/image/skins/morticzek.webp?url';
+import MivosVanos from '../../assets/image/skins/mivosvanos.webp?url';
+import Qxerty from '../../assets/image/skins/qxerty.webp?url';
+import JustWhen from '../../assets/image/skins/justwhen.webp?url';
 
 const heads = {
     frozenman: FrozenmanHead,
@@ -75,7 +75,6 @@ const PresentationCard = () => {
     const [selectedDescription, setSelectedDescription] = useState(descriptions.frozenman);
     const [selectedImage, setSelectedImage] = useState(images.frozenman);
     const [selectedRole, setSelectedRole] = useState(roles.frozenman);
-    const [selectedRoleColor, setSelectedRoleColor] = useState(colors.frozenman);
     const [selectedIsContentTeam, setSelectedIsContentTeam] = useState(isContentTeam(roles.frozenman));
 
     // Event handler for button click
@@ -84,7 +83,6 @@ const PresentationCard = () => {
         setSelectedDescription(descriptions[name]);
         setSelectedImage(images[name]);
         setSelectedRole(roles[name]);
-        setSelectedRoleColor(colors[name]);
         setSelectedIsContentTeam(isContentTeam(roles[name]));
     };
 

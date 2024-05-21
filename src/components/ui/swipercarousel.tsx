@@ -23,8 +23,9 @@ const SwiperCarousel: React.FC<CarouselProps> = ({ items }) => {
             <Swiper
                 spaceBetween={50}
                 slidesPerView={1}
-                onSlideChange={(swiper) => setCurrentText(items[swiper.activeIndex].text)}
-                onSwiper={(swiper) => setCurrentText(items[0].text)}
+                loop={true}
+                onSlideChange={(swiper) => setCurrentText(items[swiper.realIndex].text)}
+                onSwiper={(swiper) => setCurrentText(items[swiper.realIndex].text)}
                 autoplay={{ delay: 5000, disableOnInteraction: false }}
             >
                 {items.map((item, index) => (
@@ -39,4 +40,3 @@ const SwiperCarousel: React.FC<CarouselProps> = ({ items }) => {
 };
 
 export default SwiperCarousel;
-

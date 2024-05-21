@@ -2,13 +2,12 @@
 import '@/assets/styles/globals.css';
 import '@/assets/styles/tailwind.css';
 import MainLayout from "../layouts/MainLayout.astro";
-import HeroCarousel from "../components/widgets/hero-carousel";
 import Features from "../components/widgets/Features.astro";
 import SwiperCarousel from "../components/ui/swipercarousel";
 
-import img1 from "@/assets/image/carousel/img1.png?url";
-import img2 from "@/assets/image/carousel/img2.png?url";
-import img3 from "@/assets/image/carousel/img3.png?url";
+import img1 from "@/assets/image/carousel/img1.webp?url";
+import img2 from "@/assets/image/carousel/img2.webp?url";
+import img3 from "@/assets/image/carousel/img3.webp?url";
 
 const items = [
 	{
@@ -30,6 +29,8 @@ const features = [
 		icon: "🌾",
 		title: "Custom Crops and Plants",
 		description: "Grow unique crops and plants with special properties and uses, adding depth to your farming experience.",
+		color: "bg-yellow-600",
+		additionalText: "Coming Soon!"
 	},
 	{
 		icon: "🎉",
