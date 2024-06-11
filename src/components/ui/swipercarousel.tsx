@@ -30,7 +30,7 @@ const SwiperCarousel: React.FC<CarouselProps> = ({ items }) => {
             >
                 {items.map((item, index) => (
                     <SwiperSlide key={index}>
-                        <img className="w-full h-auto rounded-2xl" src={item.image} alt={`Slide ${index + 1}`} width={1920} loading="lazy" />
+                        <img className="w-full h-auto rounded-2xl" src={item.image} alt={`Slide ${index + 1}`} width={1920} />
                     </SwiperSlide>
                 ))}
             </Swiper>

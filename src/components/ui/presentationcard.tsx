@@ -29,13 +29,25 @@ import Anidiotnon from '../../assets/image/skins/anidiotnon_.webp?url';
 const heads = {
     frozenman: FrozenmanHead,
     morticzek: MorticzekHead,
-    mivosvanos: MivosVanosHead,
-    qxerty: QxertyHead,
-    justwhen: JustWhenHead,
-    chl0ev: Chl0evHead,
-    simonzoli: SimonZoliHead,
-    xnova204: xNova204Head,
     anidiotnon: Anidiotnon_Head,
+    mivosvanos: MivosVanosHead,
+    justwhen: JustWhenHead,
+    qxerty: QxertyHead,
+    chl0ev: Chl0evHead,
+    xnova204: xNova204Head,
+    simonzoli: SimonZoliHead,
+};
+
+const images: Record<string, string> = {
+    frozenman: Frozenman,
+    morticzek: Morticzek,
+    anidiotnon: Anidiotnon,
+    mivosvanos: MivosVanos,
+    justwhen: JustWhen,
+    qxerty: Qxerty,
+    chl0ev: Chl0ev,
+    xnova204: xNova204,
+    simonzoli: SimonZoli,
 };
 
 const names: Record<string, string> = {
@@ -60,18 +72,6 @@ const descriptions: Record<string, string> = {
     simonzoli: 'Hi, I’m simonzoli99! I create the music that brings our game to life, setting the mood for your epic adventures. Let\'s make some great memories together!',
     xnova204: 'Hey, I’m xNova204! I’m a texture artist, and I love creating unique visuals that make our game stand out. Can’t wait for you to see the world we’ve built!',
     anidiotnon: 'Hey, I’m Anidiotnon_! I’m a game developer, and I’m passionate about creating a fun and engaging experience for all players. Let’s make something awesome together!',
-};
-
-const images: Record<string, string> = {
-    frozenman: Frozenman,
-    morticzek: Morticzek,
-    mivosvanos: MivosVanos,
-    qxerty: Qxerty,
-    justwhen: JustWhen,
-    chl0ev: Chl0ev,
-    simonzoli: SimonZoli,
-    xnova204: xNova204,
-    anidiotnon: Anidiotnon,
 };
 
 const roles: Record<string, string> = {
