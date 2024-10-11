@@ -1,8 +1,6 @@
-// @ts-nocheck
-// TO-DO: Add autoplay with delay to the carousel
-
-import React, { useState } from 'react';
-import { twMerge } from "tailwind-merge";
+//@ts-nocheck
+import React, { useState, useEffect } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 import styles from '../../assets/styles/components/presentationcard.module.css';
 
@@ -41,10 +39,10 @@ const heads = {
     chl0ev: Chl0evHead,
     xnova204: xNova204Head,
     simonzoli: SimonZoliHead,
-    markispl: MarkisPLHead
+    markispl: MarkisPLHead,
 };
 
-const images: Record<string, string> = {
+const images = {
     frozenman: Frozenman,
     morticzek: Morticzek,
     anidiotnon: Anidiotnon,
@@ -55,10 +53,10 @@ const images: Record<string, string> = {
     simonzoli: SimonZoli,
     markispl: MarkisPL,
     spideyzac: SpideyZac,
-    phobicshoe: PhobicShoe
+    phobicshoe: PhobicShoe,
 };
 
-const names: Record<string, string> = {
+const names = {
     frozenman: 'Frozenman',
     morticzek: 'Morticzek',
     qxerty: 'qxerty',
@@ -69,7 +67,7 @@ const names: Record<string, string> = {
     anidiotnon: 'Anidiotnon_',
     markispl: 'MarkisPL',
     spideyzac: 'SpideyZac',
-    phobicshoe: 'PhobicShoe'
+    phobicshoe: 'PhobicShoe',
 };
 
 const descriptions: Record<string, string> = {
@@ -86,7 +84,7 @@ const descriptions: Record<string, string> = {
     phobicshoe: "Hello! I’m PhobicShoe, a junior developer who’s excited to help bring this server to life. Let’s build something great together!"
 };
 
-const roles: Record<string, string> = {
+const roles = {
     frozenman: 'Owner',
     morticzek: 'Developer',
     qxerty: 'Game Master',
@@ -97,108 +95,83 @@ const roles: Record<string, string> = {
     markispl: 'Builder',
     anidiotnon: 'Junior Developer',
     spideyzac: 'Junior Developer',
-    phobicshoe: 'Junior Developer'
+    phobicshoe: 'Junior Developer',
 };
 
 const isContentTeam = (role: string) => {
-    return role !== 'Owner'
-}
+    return role !== 'Owner';
+};
 
 const PresentationCard = () => {
-    // Define state variables
     const [selectedName, setSelectedName] = useState(names.frozenman);
     const [selectedDescription, setSelectedDescription] = useState(descriptions.frozenman);
     const [selectedImage, setSelectedImage] = useState(images.frozenman);
     const [selectedRole, setSelectedRole] = useState(roles.frozenman);
     const [selectedIsContentTeam, setSelectedIsContentTeam] = useState(isContentTeam(roles.frozenman));
+    const [activeIndex, setActiveIndex] = useState(0);
+    const [animating, setAnimating] = useState(false);
 
-    // Event handler for button click
-    const handleButtonClick = (name: string) => {
-        setSelectedName(names[name]);
-        setSelectedDescription(descriptions[name]);
-        setSelectedImage(images[name]);
-        setSelectedRole(roles[name]);
-        setSelectedIsContentTeam(isContentTeam(roles[name]));
-    };
+    const skinKeys = Object.keys(names);
+
+// Autoplay logic
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setAnimating(true); // Start fade-out
+            setTimeout(() => {
+                const nextIndex = (activeIndex + 1) % skinKeys.length;
+                const name = skinKeys[nextIndex];
+
+                // Update state with the new skin after animation is complete
+                setSelectedName(names[name]);
+                setSelectedDescription(descriptions[name]);
+                setSelectedImage(images[name]);
+                setSelectedRole(roles[name]);
+                setSelectedIsContentTeam(isContentTeam(roles[name]));
+                setActiveIndex(nextIndex);
+                setAnimating(false); // Start fade-in
+            }, 500); // 500ms corresponds to the duration of fade-out
+        }, 6000); // Change every 6 seconds, allowing for 500ms of animation
+
+        return () => clearInterval(interval); // Cleanup interval on unmount
+    }, [activeIndex, skinKeys]);
 
     return (
         <div className="container mx-auto p-4">
-            <div
-                className="flex justify-center bg-neutral-800 w-fit mx-auto m-4 text-color px-8 py-4 rounded-xl shadow-lg">
+            <div className="flex justify-center bg-neutral-800 w-fit mx-auto m-4 text-color px-8 py-4 rounded-xl shadow-lg">
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-                    {Object.keys(heads).map((name, index) => (
+                    {skinKeys.map((name, index) => (
                         <div key={index} className="flex justify-center items-center mx-3">
                             <button
                                 className="w-16 h-16 rounded-full border-2 border-transparent hover:border-gray-400 transition-colors duration-300"
-                                onClick={() => handleButtonClick(name)}
+                                onClick={() => setActiveIndex(index)}
                             >
-                                <img
-                                    src={heads[name]}
-                                    alt="Head"
-                                    className="w-16 h-16 rounded-full"
-                                    loading="lazy"
-                                />
+                                <img src={heads[name]} alt="Head" className="w-16 h-16 rounded-full" loading="lazy" />
                             </button>
                         </div>
                     ))}
                 </div>
             </div>
-            <div
-                className="hidden md:flex relative justify-center w-full lg:w-2/3 container mx-auto bg-neutral-800 rounded-xl shadow-lg divide-x-4 px-4">
+
+            <div className="hidden md:flex relative justify-center w-full lg:w-2/3 container mx-auto bg-neutral-800 rounded-xl shadow-lg divide-x-4 px-4">
                 <div className="w-1/2 text-left divide-y-2 pr-4 p-6">
-                    <div>
-                        {
-                            selectedIsContentTeam &&
-                            <h3 className={twMerge(styles.h3, 'text-yellow-300')}>Content Team</h3>
-                        }
-                        {
-                            selectedRole === 'Owner' && (
-                                <h3 className={twMerge(styles.h3, 'mb-1', 'text-red-700')}>Owner</h3>
-                            )
-                        }
-                        {
-                            selectedRole !== 'Owner' && (
-                                <h4 className={twMerge(styles.h3, 'mb-4')}>{selectedRole}</h4>
-                            )
-                        }
-                    </div>
-                    <h5 className={twMerge(styles.h2, 'mb-4')}>{selectedName}</h5>
-                    <h6 className={twMerge(styles.p, 'pt-4 text-[1.25rem] md:text-2xl')}>{selectedDescription}</h6>
+                    {selectedIsContentTeam && <h3 className={twMerge(styles.h3, 'text-yellow-300')}>Content Team</h3>}
+                    {selectedRole === 'Owner' ? <h3 className={twMerge(styles.h3, 'text-red-700')}>Owner</h3> : <h4 className={twMerge(styles.h3)}>{selectedRole}</h4>}
+                    <h5 className={twMerge(styles.h2)}>{selectedName}</h5>
+                    <h6 className={twMerge(
+                        styles.p,
+                        'pt-4 text-[1.25rem] md:text-2xl',
+                        animating ? 'animate-fadeOut' : 'animate-fadeIn'
+                    )}>
+                        {selectedDescription}
+                    </h6>
                 </div>
                 <div className="flex justify-center w-1/2 items-center text-color p-6">
                     <img
                         src={selectedImage}
                         alt="Skin"
-                        className="rounded-lg p-2 max-h-[700px]"
+                        className={twMerge('rounded-lg p-2 max-h-[700px]', animating ? 'animate-fadeOutRight' : 'animate-fadeInLeft')}
                         loading="lazy"
                     />
-                </div>
-            </div>
-            <div className="block md:hidden">
-                <div
-                    className="relative flex flex-col justify-center w-full lg:w-2/3 container mx-auto bg-neutral-800 rounded-xl shadow-lg px-4">
-                    <div className="flex justify-center items-center w-full lg:w-1/2 text-color p-6">
-                        <img
-                            src={selectedImage}
-                            alt="Skin"
-                            className="rounded-lg p-2 max-h-[500px]"
-                            loading="lazy"
-                        />
-                    </div>
-                    <div className="w-full lg:w-1/2 text-left p-6 divide-y-2">
-                        <div>
-                            {selectedIsContentTeam && (
-                                <h3 className={twMerge(styles.h3, 'text-yellow-300')}>Content Team</h3>
-                            )}
-                            {selectedRole === 'Owner' ? (
-                                <h3 className={twMerge(styles.h3, 'mb-1', 'text-red-700')}>Owner</h3>
-                            ) : (
-                                <h4 className={twMerge(styles.h3, 'mb-4')}>{selectedRole}</h4>
-                            )}
-                        </div>
-                        <h5 className={twMerge(styles.h2, 'mb-4')}>{selectedName}</h5>
-                        <h6 className={twMerge(styles.p, 'pt-4 text-[1.25rem] md:text-2xl')}>{selectedDescription}</h6>
-                    </div>
                 </div>
             </div>
         </div>

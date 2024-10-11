@@ -81,10 +81,20 @@ module.exports = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "fadeInLeft": {
+          '0%': { opacity: '0', transform: 'translateX(-50%)' },
+          '100%': { opacity: '1', transform: 'translateX(0)' },
+        },
+        "fadeOutRight": {
+          '0%': { opacity: '1', transform: 'translateX(0)' },
+          '100%': { opacity: '0', transform: 'translateX(50%)' },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "fadeInLeft": 'fadeInLeft 1s ease forwards',
+        "fadeOutRight": 'fadeOutRight 1s ease forwards',
       },
     },
   },

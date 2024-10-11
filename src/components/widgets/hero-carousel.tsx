@@ -8,9 +8,9 @@ import {
 
 import Autoplay from "embla-carousel-autoplay";
 
-import img1 from "@/assets/image/carousel/img1.png?url";
-import img2 from "@/assets/image/carousel/img2.png?url";
-import img3 from "@/assets/image/carousel/img3.png?url";
+import img1 from "@/assets/image/carousel/img1.webp?url";
+import img2 from "@/assets/image/carousel/img2.webp?url";
+import img3 from "@/assets/image/carousel/img3.webp?url";
 
 export default function HeroCarousel() {
 
