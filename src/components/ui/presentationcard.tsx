@@ -7,26 +7,22 @@ import styles from '../../assets/styles/components/presentationcard.module.css';
 import FrozenmanHead from '../../assets/image/skins/frozenman_head.png?url';
 import MorticzekHead from '../../assets/image/skins/morticzek_head.png?url';
 import QxertyHead from '../../assets/image/skins/qxerty_head.png?url';
-import JustWhenHead from '../../assets/image/skins/justwhen_head.png?url';
-import Chl0evHead from '../../assets/image/skins/chl0ev_head.png?url';
 import SimonZoliHead from '../../assets/image/skins/simonzoli_head.png?url';
 import xNova204Head from '../../assets/image/skins/xnova204_head.png?url';
 import Anidiotnon_Head from '../../assets/image/skins/anidiotnon__head.png?url';
-import MarkisPLHead from '../../assets/image/skins/markispl_head.png?url';
 import SpideyZacHead from '../../assets/image/skins/spideyzac_head.png?url';
 import PhobicShoeHead from '../../assets/image/skins/phobicshoe_head.png?url';
+import x_KefirHead from '../../assets/image/skins/x_kefir_head.webp?url';
 
 import Frozenman from '../../assets/image/skins/frozenman.webp?url';
 import Morticzek from '../../assets/image/skins/morticzek.webp?url';
 import Qxerty from '../../assets/image/skins/qxerty.webp?url';
-import JustWhen from '../../assets/image/skins/justwhen.webp?url';
-import Chl0ev from '../../assets/image/skins/chl0ev.webp?url';
 import SimonZoli from '../../assets/image/skins/simonzoli.webp?url';
 import xNova204 from '../../assets/image/skins/xnova204.webp?url';
 import Anidiotnon from '../../assets/image/skins/anidiotnon_.webp?url';
-import MarkisPL from '../../assets/image/skins/markispl.webp?url';
 import SpideyZac from '../../assets/image/skins/spideyzac.webp?url';
 import PhobicShoe from '../../assets/image/skins/phobicshoe.webp?url';
+import x_Kefir from '../../assets/image/skins/x_kefir.webp?url';
 
 const heads = {
     frozenman: FrozenmanHead,
@@ -34,68 +30,58 @@ const heads = {
     anidiotnon: Anidiotnon_Head,
     spideyzac: SpideyZacHead,
     phobicshoe: PhobicShoeHead,
-    justwhen: JustWhenHead,
     qxerty: QxertyHead,
-    chl0ev: Chl0evHead,
     xnova204: xNova204Head,
     simonzoli: SimonZoliHead,
-    markispl: MarkisPLHead,
+    x_kefir: x_KefirHead,
 };
 
 const images = {
     frozenman: Frozenman,
     morticzek: Morticzek,
     anidiotnon: Anidiotnon,
-    justwhen: JustWhen,
     qxerty: Qxerty,
-    chl0ev: Chl0ev,
     xnova204: xNova204,
     simonzoli: SimonZoli,
-    markispl: MarkisPL,
     spideyzac: SpideyZac,
     phobicshoe: PhobicShoe,
+    x_kefir: x_Kefir,
 };
 
 const names = {
     frozenman: 'Frozenman',
     morticzek: 'Morticzek',
     qxerty: 'qxerty',
-    justwhen: 'JustWhen',
-    chl0ev: 'chl0ev',
     simonzoli: 'simonzoli99',
     xnova204: 'xNova204',
     anidiotnon: 'Anidiotnon_',
-    markispl: 'MarkisPL',
     spideyzac: 'SpideyZac',
     phobicshoe: 'PhobicShoe',
+    x_kefir: 'x_Kefir',
 };
 
 const descriptions: Record<string, string> = {
     frozenman: "Hey, I'm Frozenman! I own the server and work as a software engineer. I'm doing my best to make an awesome server for everyone to enjoy. Let's create something cool together!",
     morticzek: "Hey there, I’m Morticzek! I take care of the website and server development, making sure everything runs smoothly. I’m stoked to be part of this awesome team, and I hope you have a blast with us!",
-    qxerty: "Greetings! I’m qxerty, the one behind the storylines and game mastering. My goal is to weave tales that keep you hooked. Get ready for some unforgettable adventures on our server!",
-    justwhen: "Hi! I’m JustWhen, and I’m all about creating fun quests and challenges as a game master. I hope you have a fantastic time exploring everything our server has to offer!",
-    chl0ev: "Hello, I’m Chloe! I’m the designer and map builder, blending creativity with aesthetics to make our server look stunning. Can’t wait for you to see what we’ve crafted!",
+    qxerty: "Greetings! I’m qxerty, a moderator on the server. I’m here to help you out and make sure you have a great time. Let’s have some fun together!",
     simonzoli: "Hey, I’m simonzoli99! I create the music that sets the mood for your adventures. Together, let’s make some great memories on the server!",
     xnova204: "Hi, I’m xNova204! I’m a texture artist who loves crafting unique visuals that make our server stand out. I’m excited for you to explore the world we’ve built!",
     anidiotnon: "Hey there, I’m Anidiotnon_! I’m a server developer with a passion for creating a fun and engaging experience for everyone. Let’s make something awesome together!",
-    markispl: "Howdy! I’m MarkisPL, a builder who loves bringing our world to life with cool structures. I hope you enjoy exploring everything we’ve put together on the server!",
     spideyzac: "Hi, I’m SpideyZac! As a junior developer, I’m thrilled to be part of the team working on this server. Let’s create something amazing together!",
-    phobicshoe: "Hello! I’m PhobicShoe, a junior developer who’s excited to help bring this server to life. Let’s build something great together!"
+    phobicshoe: "Hello! I’m PhobicShoe, a junior developer who’s excited to help bring this server to life. Let’s build something great together!",
+    x_kefir: "Hey there, I’m x_Kefir! I’m a game master who loves creating exciting adventures for you to embark on. Get ready for some epic quests on our server!",
 };
 
 const roles = {
     frozenman: 'Owner',
     morticzek: 'Developer',
-    qxerty: 'Game Master',
-    justwhen: 'Game Master',
-    chl0ev: 'Game Master',
+    qxerty: 'Moderator',
     simonzoli: 'Music Composer',
     xnova204: 'Texture Artist',
-    markispl: 'Builder',
     anidiotnon: 'Junior Developer',
     spideyzac: 'Junior Developer',
     phobicshoe: 'Junior Developer',
+    x_kefir: 'Game Master',
 };
 
 const isContentTeam = (role: string) => {
@@ -113,21 +99,23 @@ const PresentationCard = () => {
 
     const skinKeys = Object.keys(names);
 
-// Autoplay logic
+    const updateSelectedState = (index: number) => {
+        const name = skinKeys[index];
+        setSelectedName(names[name]);
+        setSelectedDescription(descriptions[name]);
+        setSelectedImage(images[name]);
+        setSelectedRole(roles[name]);
+        setSelectedIsContentTeam(isContentTeam(roles[name]));
+        setActiveIndex(index);
+    };
+
+    // Autoplay logic
     useEffect(() => {
         const interval = setInterval(() => {
             setAnimating(true); // Start fade-out
             setTimeout(() => {
                 const nextIndex = (activeIndex + 1) % skinKeys.length;
-                const name = skinKeys[nextIndex];
-
-                // Update state with the new skin after animation is complete
-                setSelectedName(names[name]);
-                setSelectedDescription(descriptions[name]);
-                setSelectedImage(images[name]);
-                setSelectedRole(roles[name]);
-                setSelectedIsContentTeam(isContentTeam(roles[name]));
-                setActiveIndex(nextIndex);
+                updateSelectedState(nextIndex);
                 setAnimating(false); // Start fade-in
             }, 500); // 500ms corresponds to the duration of fade-out
         }, 6000); // Change every 6 seconds, allowing for 500ms of animation
@@ -143,7 +131,13 @@ const PresentationCard = () => {
                         <div key={index} className="flex justify-center items-center mx-3">
                             <button
                                 className="w-16 h-16 rounded-full border-2 border-transparent hover:border-gray-400 transition-colors duration-300"
-                                onClick={() => setActiveIndex(index)}
+                                onClick={() => {
+                                    setAnimating(true); // Start fade-out
+                                    setTimeout(() => {
+                                        updateSelectedState(index);
+                                        setAnimating(false); // Start fade-in
+                                    }, 500); // 500ms corresponds to the duration of fade-out
+                                }}
                             >
                                 <img src={heads[name]} alt="Head" className="w-16 h-16 rounded-full" loading="lazy" />
                             </button>
