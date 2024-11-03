@@ -2,8 +2,14 @@
 // @ts-nocheck
 import Tick from "../../symbols/Tick.astro";
 import { twMerge } from "tailwind-merge";
-const { name, description, oldPrice, newPrice, image, perks, color, border, tag, background } = Astro.props;
 import { Image } from "astro:assets";
+import { type Package } from "tebex_headless";
+
+interface Props {
+    product: Package;
+}
+
+const { product } = Astro.props;
 ---
 <div class={twMerge("relative bg-neutral-800 text-color p-6 rounded-xl shadow-lg flex flex-col justify-between h-full border-4", border)}>
     {tag && (
@@ -12,9 +18,9 @@ import { Image } from "astro:assets";
             </div>
     )}
     <div class="flex flex-col items-center mb-4 mt-8">
-        <Image src={image} alt={name} class="w-full object-cover mb-4" width="256px" height="256px" loading="lazy"/>
-        <h2 class={twMerge(color, "text-4xl font-bold mb-2")}>{name}</h2>
-        <p class="text-xl text-[#c9c9c9] font-normal text-left mb-4 min-h-[120px]">{description}</p>
+        <Image src={product.image} alt={product.name} class="w-full object-cover mb-4" width="256px" height="256px" loading="lazy"/>
+        <h2 class={twMerge(color, "text-4xl font-bold mb-2")}>{product.name}</h2>
+        <p class="text-xl text-[#c9c9c9] font-normal text-left mb-4 min-h-[120px]">{product.description}</p>
         <ul class="list-disc list-inside text-left grid grid-rows-[repeat(7,_min-content)] gap-1">
             {perks.map(perk => (
                     <li class="flex items-center gap-2 text-xl">
@@ -26,8 +32,13 @@ import { Image } from "astro:assets";
     </div>
     <div class="text-center">
         {oldPrice && <p class="line-through text-lg text-red-500">{oldPrice}</p>}
-        <p class="text-2xl font-semibold">{newPrice}</p>
-        <button class="mt-4 bg-yellow-500 hover:bg-yellow-300 text-black px-4 py-2 font-bold text-xl rounded-md transition-colors duration-300 ease-in-out">COMING SOON</button>
+        <p class="text-2xl font-semibold">{product.base_price}</p>
+        <button
+                data-package-if={product.id}
+                class="mt-4 bg-yellow-500 hover:bg-yellow-300 text-black px-4 py-2 font-bold text-xl rounded-md transition-colors duration-300 ease-in-out">Buy</button>
+        <button
+                data-package-if={product.id}
+                class="mt-4 bg-gray-600 hover:bg-yellow-300 text-black px-4 py-2 font-bold text-xl rounded-md transition-colors duration-300 ease-in-out">Add to Cart</button>
     </div>
 </div>
 
