@@ -4,94 +4,52 @@ import '@/assets/styles/tailwind.css';
 import StoreHeader from '../components/ui/store/StoreHeader.astro';
 import StoreGrid from '../components/ui/store/StoreGrid.astro';
 import MainLayout from "../layouts/MainLayout.astro";
+import {
+    extractPerksFromDescription,
+    getCategoryBorder,
+    getCategoryColor,
+    tebexApi,
+    transformPackageData
+} from '../utils/tebex';
 
 import Tier1 from '../assets/image/products/rank_lord.webp?url';
 import Tier2 from '../assets/image/products/rank_baron.webp?url';
 import Tier3 from '../assets/image/products/rank_duke.webp?url';
 import Tier4 from '../assets/image/products/rank_land_grant.webp?url';
 import StoreFAQ from "../components/ui/store/StoreFAQ.astro";
+import ShoppingCart from "../components/ui/store/ShoppingCart.astro";
 
-// Sample product data
-const products = [
-    {
-        name: 'Lord',
-        description: 'Receive the Lord Rank on the Server and the SereneFields Discord.',
-        //oldPrice: '17.99 USD',
-        // newPrice: '12.99 USD',
-        // newPrice: '??.?? USD',
-        image: Tier1,
-        perks: [
-            // 'Chat Prefix',
-            // 'No Chat Cooldown',
-            // 'Rank-Specific Cosmetics',
-            '???? ?????',
-            '?? ???? ????????',
-            '????-???????? ??????????'
-        ],
-        color: "text-[#85cb5d]",
-        border: "border-[#85cb5d]"
-    },
-    {
-        name: 'Baron',
-        description: 'Receive the Baron Rank on the Server and the SereneFields Discord.',
-        //oldPrice: '35.99 USD',
-        // newPrice: '29.99 USD',
-        // newPrice: '??.?? USD',
-        image: Tier2,
-        perks: [
-            // 'Chat Prefix',
-            // 'No Chat Cooldown',
-            // 'Rank-Specific Cosmetics',
-            // 'Free Weekly Cosmetics',
-            '???? ?????',
-            '?? ???? ????????',
-            '????-???????? ??????????',
-        ],
-        color: "text-[#77a6ee]",
-        border: "border-[#77a6ee]"
-    },
-    {
-        name: 'Duke',
-        description: 'Receive the Duke Rank on the Server and the SereneFields Discord.',
-        //oldPrice: '53.99 USD',
-        // newPrice: '69.99 USD',
-        // newPrice: '??.?? USD',
-        image: Tier3,
-        perks: [
-            // 'Chat Prefix',
-            // 'No Chat Cooldown',
-            // 'Rank-Specific Cosmetics',
-            // 'Free Weekly Cosmetics',
-            // 'Access to the Beta Server',
-            // 'Larger Farm Plot',
-            '???? ?????',
-            '?? ???? ????????',
-            '????-???????? ??????????',
-        ],
-        color: "text-[#dea95d]",
-        border: "border-[#dea95d]"
-    },
-    {
-        name: ' Land Grant ️',
-        description: 'This subscription allows any player, regardless of rank, to freely build on their farm plot.',
-        //oldPrice: '59.99 USD',
-        // newPrice: '9.99 USD Monthly',
-        // newPrice: '?.?? USD monthly',
-        image: Tier4,
-        perks: [
-            // 'Build on Your Farm Without Restrictions',
-            // 'Exclusive Rank Suffix',
-            '???? ?????',
-            '?? ???? ????????',
-            '????-???????? ??????????',
-        ],
-        color: "text-[#cf6364]",
-        border: "border-[#cf6364] border-8",
-        tag: "FULL ACCESS",
-        background: "bg-[#cf6364]"
-    },
-    // Add more products as needed
-];
+const categories = await tebexApi.getStoreData();
+const products = categories[0].packages.map(pkg => ({
+    name: pkg.name,
+    description: pkg.description.replace(/<\/?p>/g, ''), // Remove <p> tags
+    image: pkg.image,
+    base_price: pkg.base_price,
+    sales_tax: pkg.sales_tax,
+    total_price: pkg.total_price,
+    currency: pkg.currency,
+    color: getCategoryColor(pkg.name),
+    border: getCategoryBorder(pkg.name),
+    tebexId: pkg.id
+}));
+
+function getCategoryColor(packageName: string): string {
+    const colors = {
+        'Lord Rank': 'text-[#85cb5d]',
+        'Baron Rank': 'text-[#77a6ee]',
+        'Duke Rank': 'text-[#dea95d]',
+    };
+    return colors[packageName] || 'text-gray-200';
+}
+
+function getCategoryBorder(packageName: string): string {
+    const borders = {
+        'Lord Rank': 'border-[#85cb5d]',
+        'Baron Rank': 'border-[#77a6ee]',
+        'Duke Rank': 'border-[#dea95d]',
+    };
+    return borders[packageName] || 'border-gray-200';
+}
 
 // Sample FAQ data
 const faqs = [
