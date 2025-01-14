@@ -1,8 +1,7 @@
 ---
-// @ts-nocheck
-import Tick from "../../symbols/Tick.astro";
-import { twMerge } from "tailwind-merge";
-import { tebexApi } from "../../../utils/tebex";
+// components/ui/store/ProductCard.astro
+
+import {twMerge} from "tailwind-merge";
 const {
     name,
     description,
@@ -10,48 +9,22 @@ const {
     total_price,
     currency,
     image,
-    perks,
     color,
     border,
-    tag,
-    background,
-    tebexId,
-    discount
+    tebexId
 } = Astro.props;
 
-const categories = await tebexApi.getStoreData();
-
-import { Image } from "astro:assets";
+const displayPrice = Number(total_price).toFixed(2);
 ---
 <div class={twMerge("relative bg-neutral-800 text-color p-6 rounded-xl shadow-lg flex flex-col justify-between h-full border-4", border)}>
-    {tag && (
-            <div class={twMerge("absolute top-0 left-0 right-0 text-center py-1 text-2xl font-bold tracking-[.3em]", background)}>
-                {tag}
-            </div>
-    )}
     <div class="flex flex-col items-center mb-4 mt-8">
-        <Image src={image} alt={name} class="w-full object-cover mb-4" width="256" height="256" loading="lazy"/>
+        <img src={image} alt={name} class="w-full object-cover mb-4" width="256" height="256" loading="lazy"/>
         <h2 class={twMerge(color, "text-4xl font-bold mb-2")}>{name}</h2>
         <p class="text-xl text-[#c9c9c9] font-normal text-left mb-4 min-h-[120px]">{description}</p>
-        {perks && perks.length > 0 && (
-                <ul class="list-disc list-inside text-left grid grid-rows-[repeat(7,_min-content)] gap-1">
-                    {perks.map(perk => (
-                            <li class="flex items-center gap-2 text-xl">
-                                <Tick/>
-                                {perk}
-                            </li>
-                    ))}
-                </ul>
-        )}
     </div>
     <div class="text-center">
-        {discount && (
-                <p class="line-through text-lg text-red-500">
-                    {base_price} {currency}
-                </p>
-        )}
-        <p class="text-2xl font-semibold">
-            {total_price} {currency}
+        <p class="text-2xl text-[#c9c9c9] font-semibold">
+            {displayPrice} {currency}
         </p>
         <button
                 data-tebex-id={tebexId}
@@ -61,12 +34,3 @@ import { Image } from "astro:assets";
         </button>
     </div>
 </div>
-
-<style>
-    .text-color {
-        color: rgb(230, 230, 230);
-    }
-    h2, p, li, div {
-        font-family: 'Gabarito', sans-serif;
-    }
-</style>
