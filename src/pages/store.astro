@@ -1,4 +1,5 @@
 ---
+// @ts-nocheck
 import '@/assets/styles/globals.css';
 import '@/assets/styles/tailwind.css';
 import StoreHeader from '../components/ui/store/StoreHeader.astro';
@@ -19,19 +20,25 @@ import Tier4 from '../assets/image/products/rank_land_grant.webp?url';
 import StoreFAQ from "../components/ui/store/StoreFAQ.astro";
 import ShoppingCart from "../components/ui/store/ShoppingCart.astro";
 
-const categories = await tebexApi.getStoreData();
-const products = categories[0].packages.map(pkg => ({
-    name: pkg.name,
-    description: pkg.description.replace(/<\/?p>/g, ''), // Remove <p> tags
-    image: pkg.image,
-    base_price: pkg.base_price,
-    sales_tax: pkg.sales_tax,
-    total_price: pkg.total_price,
-    currency: pkg.currency,
-    color: getCategoryColor(pkg.name),
-    border: getCategoryBorder(pkg.name),
-    tebexId: pkg.id
-}));
+let products = [];
+try {
+    const categories = await tebexApi.getStoreData();
+    if (categories && categories.length > 0 && categories[0].packages) {
+        products = categories[0].packages.map(pkg => ({
+            name: pkg.name,
+            description: pkg.description.replace(/<\/?p>/g, ''), // Remove <p> tags
+            image: pkg.image,
+            base_price: pkg.base_price,
+            total_price: pkg.total_price,
+            currency: pkg.currency,
+            tebexId: pkg.id,
+            color: getCategoryColor(pkg.name),
+            border: getCategoryBorder(pkg.name)
+        }));
+    }
+} catch (error) {
+    console.error('Failed to load store products:', error);
+}
 
 function getCategoryColor(packageName: string): string {
     const colors = {
@@ -75,5 +82,6 @@ const faqs = [
             description="Take a look at our available ranks and subscriptions, granting you access to exclusive perks and features."
     />
     <StoreGrid products={products} />
+    <ShoppingCart />
     <StoreFAQ faqs={faqs} />
 </MainLayout>

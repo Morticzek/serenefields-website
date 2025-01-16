@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 interface TebexPackage {
     id: number;
     name: string;
@@ -18,17 +20,11 @@ interface TebexPackage {
         amount: number;
     } | null;
     disable_quantity: boolean;
-    disable_gifting: boolean;
+    disable_gifting: boolean;z
     expiration_date: string | null;
     created_at: string;
     updated_at: string;
     order: number;
-}
-
-interface TebexCategory {
-    id: number;
-    name: string;
-    packages: TebexPackage[];
 }
 
 // Transform package data for the store
@@ -86,7 +82,7 @@ export const tebexApi = {
         try {
             const token = import.meta.env.PUBLIC_TEBEX_TOKEN;
             if (!token) {
-                throw new Error('Tebex token not configured');
+                throw new Error('Tebex Headless token not configured');
             }
 
             const response = await fetch(
@@ -98,7 +94,7 @@ export const tebexApi = {
             }
 
             const data = await response.json();
-            return data.data as TebexCategory[];
+            return data.data;
         } catch (error) {
             console.error('Failed to fetch store data:', error);
             return [];

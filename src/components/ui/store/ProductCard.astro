@@ -23,14 +23,39 @@ const displayPrice = Number(total_price).toFixed(2);
         <p class="text-xl text-[#c9c9c9] font-normal text-left mb-4 min-h-[120px]">{description}</p>
     </div>
     <div class="text-center">
-        <p class="text-2xl text-[#c9c9c9] font-semibold">
+        <p class="text-2xl text-white font-semibold">
             {displayPrice} {currency}
         </p>
         <button
                 data-tebex-id={tebexId}
+                data-product-name={name}
+                data-product-price={total_price}
+                data-product-currency={currency}
+                data-product-image={image}
                 class="add-to-cart mt-4 bg-yellow-500 hover:bg-yellow-300 text-black px-4 py-2 font-bold text-xl rounded-md transition-colors duration-300 ease-in-out"
         >
             Add to Cart
         </button>
     </div>
 </div>
+
+<script>
+    import { cartStore } from '../../../utils/cart_store';
+
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+        button.addEventListener('click', (e) => {
+            const target = e.target as HTMLElement;
+            const item = {
+                id: Number(target.dataset.tebexId),
+                name: target.dataset.productName,
+                price: Number(target.dataset.productPrice),
+                currency: target.dataset.productCurrency,
+                image: target.dataset.productImage
+            };
+
+            cartStore.addItem(item);
+            // Dispatch add-to-cart event instead of toggle-cart
+            window.dispatchEvent(new Event('add-to-cart'));
+        });
+    });
+</script>
