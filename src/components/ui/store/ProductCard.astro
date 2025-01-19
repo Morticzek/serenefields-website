@@ -54,8 +54,8 @@ const displayPrice = Number(total_price).toFixed(2);
             };
 
             cartStore.addItem(item);
-            // Dispatch add-to-cart event instead of toggle-cart
-            window.dispatchEvent(new Event('add-to-cart'));
+            // Dispatch event after adding to cart
+            window.dispatchEvent(new CustomEvent('add-to-cart'));
         });
     });
 </script>

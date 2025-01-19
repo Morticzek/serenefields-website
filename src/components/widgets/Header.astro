@@ -53,7 +53,19 @@ const isStorePage = currentPath === '/store';
         const clipButton = document.getElementById('clip');
         const ipElement = document.getElementById('ip');
         const cartToggleBtn = document.getElementById('cart-toggle');
+        const cartCountElement = document.getElementById('cart-count');
 
+        // Initial cart count update
+        const cartCount = JSON.parse(localStorage.getItem('cart-items') || '[]').reduce(
+            (total, item) => total + item.quantity,
+            0
+        );
+        if (cartCountElement) {
+            cartCountElement.textContent = cartCount.toString();
+            cartCountElement.style.display = cartCount > 0 ? 'flex' : 'none';
+        }
+
+        // Clipboard functionality
         if (clipButton && ipElement) {
             clipButton.addEventListener('click', () => {
                 if (ipElement) {
@@ -69,10 +81,18 @@ const isStorePage = currentPath === '/store';
                         });
                 }
             });
-        } else {
-            console.error('Element with ID "clip" or "ip" not found.');
         }
 
+        // Cart count update
+        window.addEventListener('cart-updated', ((e: CustomEvent) => {
+            if (cartCountElement) {
+                const count = e.detail.totalQuantity;
+                cartCountElement.textContent = count.toString();
+                cartCountElement.style.display = count > 0 ? 'flex' : 'none';
+            }
+        }) as EventListener);
+
+        // Cart toggle
         if (cartToggleBtn) {
             cartToggleBtn.addEventListener('click', () => {
                 window.dispatchEvent(new Event('toggle-cart'));

@@ -1,5 +1,4 @@
 ---
-// components/ui/store/ShoppingCart.astro
 ---
 <div id="shopping-cart" class="fixed right-0 top-0 h-full w-80 bg-neutral-800 transform translate-x-full transition-transform duration-300 ease-in-out z-50 shadow-xl">
     <div class="flex flex-col h-full">
@@ -11,6 +10,20 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
+            </div>
+            <div class="mt-4 p-3 bg-neutral-700 rounded">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <span class="text-gray-400 text-sm">Name:</span>
+                        <span id="cart-nickname" class="text-white ml-2"></span>
+                    </div>
+                    <button
+                            id="change-nickname"
+                            class="text-yellow-500 hover:text-yellow-400 text-sm font-semibold"
+                    >
+                        Change
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -33,6 +46,7 @@
 </div>
 
 <script>
+    import Tebex from "@tebexio/tebex.js"
     import { cartStore } from '../../../utils/cart_store';
 
     const cart = document.getElementById('shopping-cart');
@@ -41,7 +55,17 @@
     const cartTotal = document.getElementById('cart-total');
     const checkoutButton = document.getElementById('checkout-button');
 
-    // Cart visibility state
+    document.addEventListener('DOMContentLoaded', () => {
+        const items = cartStore.getItems();
+        const total = cartStore.getTotalPrice();
+        updateCartDisplay(items, total);
+
+        const savedNickname = localStorage.getItem('minecraft-nickname');
+        if (cartNickname && savedNickname) {
+            cartNickname.textContent = savedNickname;
+        }
+    });
+
     let isCartVisible = false;
 
     function showCart() {
@@ -88,7 +112,16 @@
         }
     }
 
-    // Event Listeners
+    const cartNickname = document.getElementById('cart-nickname');
+    const changeNicknameBtn = document.getElementById('change-nickname');
+
+    function updateNicknameDisplay() {
+        const nickname = localStorage.getItem('minecraft-nickname');
+        if (cartNickname && nickname) {
+            cartNickname.textContent = nickname;
+        }
+    }
+
     closeCart?.addEventListener('click', hideCart);
 
     document.addEventListener('click', (e) => {
@@ -114,26 +147,90 @@
         }
     });
 
-    // Listen for cart toggle events
-    window.addEventListener('toggle-cart', () => {
-        toggleCart();
-    });
+    checkoutButton?.addEventListener('click', async () => {
+        const nickname = localStorage.getItem('minecraft-nickname');
+        const items = cartStore.getItems();
 
-    // Listen for add-to-cart events
-    window.addEventListener('add-to-cart', () => {
-        if (!isCartVisible) {
-            showCart();
+        if (!nickname || items.length === 0) {
+            if (!nickname) {
+                window.dispatchEvent(new Event('show-nickname-modal'));
+            }
+            return;
+        }
+
+        try {
+            const basketResponse = await fetch(
+                `https://headless.tebex.io/api/accounts/${import.meta.env.PUBLIC_TEBEX_TOKEN}/baskets`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        username: nickname,
+                        complete_url: `${window.location.origin}/store`,
+                        cancel_url: `${window.location.origin}/store`
+                    })
+                }
+            );
+
+            if (!basketResponse.ok) {
+                throw new Error('Failed to create basket');
+            }
+
+            const basketData = await basketResponse.json();
+            const basketIdent = basketData.data.ident;
+
+            for (const item of items) {
+                await fetch(
+                    `https://headless.tebex.io/api/baskets/${basketIdent}/packages`,
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            package_id: item.id,
+                            quantity: item.quantity
+                        })
+                    }
+                );
+            }
+
+            Tebex.checkout.init({
+                ident: basketIdent,
+                theme: "dark"
+            });
+
+            Tebex.checkout.launch();
+
+        } catch (error) {
+            console.error('Checkout process failed:', error);
+            alert('Failed to start checkout process. Please try again.');
         }
     });
 
-    // Listen for cart updates
+    changeNicknameBtn?.addEventListener('click', () => {
+        window.dispatchEvent(new Event('show-nickname-modal'));
+    });
+
     window.addEventListener('cart-updated', ((e: CustomEvent) => {
         updateCartDisplay(e.detail.items, e.detail.total);
     }) as EventListener);
 
-    // Handle checkout
-    checkoutButton?.addEventListener('click', () => {
-        // Implement checkout logic here
-        console.log('Checkout clicked');
+    window.addEventListener('add-to-cart', () => {
+        // console.log('Add to cart event received'); // Debug
+        showCart();
     });
+
+    window.addEventListener('nickname-set', ((e: CustomEvent) => {
+        updateNicknameDisplay();
+    }) as EventListener);
+
+    window.addEventListener('toggle-cart', () => {
+        toggleCart();
+    });
+
+    updateNicknameDisplay();
 </script>
+

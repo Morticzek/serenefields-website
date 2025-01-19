@@ -1,4 +1,4 @@
-// src/stores/CartStore.ts
+// stores/CartStore.ts
 interface CartItem {
     id: number;
     name: string;
@@ -10,15 +10,33 @@ interface CartItem {
 
 class CartStore {
     private static instance: CartStore;
-    private items: Map<number, CartItem> = new Map();
+    private items: Map<number, CartItem>;
 
-    private constructor() {}
+    private constructor() {
+        this.items = new Map();
+        this.loadFromStorage();
+    }
 
     static getInstance(): CartStore {
         if (!CartStore.instance) {
             CartStore.instance = new CartStore();
         }
         return CartStore.instance;
+    }
+
+    private loadFromStorage() {
+        const savedCart = localStorage.getItem('cart-items');
+        if (savedCart) {
+            const items = JSON.parse(savedCart);
+            items.forEach((item: CartItem) => {
+                this.items.set(item.id, item);
+            });
+            this.updateCart();
+        }
+    }
+
+    private saveToStorage() {
+        localStorage.setItem('cart-items', JSON.stringify(Array.from(this.items.values())));
     }
 
     addItem(item: Omit<CartItem, 'quantity'>) {
@@ -29,23 +47,31 @@ class CartStore {
         } else {
             this.items.set(item.id, { ...item, quantity: 1 });
         }
+        this.saveToStorage();
         this.updateCart();
     }
 
     removeItem(id: number) {
         this.items.delete(id);
+        this.saveToStorage();
         this.updateCart();
+    }
+
+    getTotalQuantity(): number {
+        return Array.from(this.items.values())
+            .reduce((total, item) => total + item.quantity, 0);
     }
 
     updateQuantity(id: number, quantity: number) {
         const item = this.items.get(id);
         if (item) {
-            item.quantity = quantity;
             if (quantity <= 0) {
                 this.items.delete(id);
             } else {
+                item.quantity = quantity;
                 this.items.set(id, item);
             }
+            this.saveToStorage();
             this.updateCart();
         }
     }
@@ -65,7 +91,8 @@ class CartStore {
         window.dispatchEvent(new CustomEvent('cart-updated', {
             detail: {
                 items: this.getItems(),
-                total: this.getTotalPrice()
+                total: this.getTotalPrice(),
+                totalQuantity: this.getTotalQuantity()
             }
         }));
     }

@@ -19,6 +19,8 @@ import Tier3 from '../assets/image/products/rank_duke.webp?url';
 import Tier4 from '../assets/image/products/rank_land_grant.webp?url';
 import StoreFAQ from "../components/ui/store/StoreFAQ.astro";
 import ShoppingCart from "../components/ui/store/ShoppingCart.astro";
+import NicknameModal from "../components/ui/store/NicknameModal.astro";
+import TebexCheckout from "../components/ui/store/TebexCheckout.astro";
 
 let products = [];
 try {
@@ -83,5 +85,6 @@ const faqs = [
     />
     <StoreGrid products={products} />
     <ShoppingCart />
+    <NicknameModal />
     <StoreFAQ faqs={faqs} />
 </MainLayout>
