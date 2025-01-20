@@ -1,52 +1,61 @@
 ---
-// @ts-nocheck
-import Tick from "../../symbols/Tick.astro";
-import { twMerge } from "tailwind-merge";
-import { Image } from "astro:assets";
-import { type Package } from "tebex_headless";
+// components/ui/store/ProductCard.astro
 
-interface Props {
-    product: Package;
-}
+import {twMerge} from "tailwind-merge";
+const {
+    name,
+    description,
+    base_price,
+    total_price,
+    currency,
+    image,
+    color,
+    border,
+    tebexId
+} = Astro.props;
 
-const { product } = Astro.props;
+const displayPrice = Number(total_price).toFixed(2);
 ---
 <div class={twMerge("relative bg-neutral-800 text-color p-6 rounded-xl shadow-lg flex flex-col justify-between h-full border-4", border)}>
-    {tag && (
-            <div class={twMerge("absolute top-0 left-0 right-0 text-center py-1 text-2xl font-bold tracking-[.3em]", background , "rounded-t-l")}>
-                {tag}
-            </div>
-    )}
     <div class="flex flex-col items-center mb-4 mt-8">
-        <Image src={product.image} alt={product.name} class="w-full object-cover mb-4" width="256px" height="256px" loading="lazy"/>
-        <h2 class={twMerge(color, "text-4xl font-bold mb-2")}>{product.name}</h2>
-        <p class="text-xl text-[#c9c9c9] font-normal text-left mb-4 min-h-[120px]">{product.description}</p>
-        <ul class="list-disc list-inside text-left grid grid-rows-[repeat(7,_min-content)] gap-1">
-            {perks.map(perk => (
-                    <li class="flex items-center gap-2 text-xl">
-                        <Tick/>
-                        {perk}
-                    </li>
-            ))}
-        </ul>
+        <img src={image} alt={name} class="w-full object-cover mb-4" width="256" height="256" loading="lazy"/>
+        <h2 class={twMerge(color, "text-4xl font-bold mb-2")}>{name}</h2>
+        <p class="text-xl text-[#c9c9c9] font-normal text-left mb-4 min-h-[120px]">{description}</p>
     </div>
     <div class="text-center">
-        {oldPrice && <p class="line-through text-lg text-red-500">{oldPrice}</p>}
-        <p class="text-2xl font-semibold">{product.base_price}</p>
+        <p class="text-2xl text-white font-semibold">
+            {displayPrice} {currency}
+        </p>
         <button
-                data-package-if={product.id}
-                class="mt-4 bg-yellow-500 hover:bg-yellow-300 text-black px-4 py-2 font-bold text-xl rounded-md transition-colors duration-300 ease-in-out">Buy</button>
-        <button
-                data-package-if={product.id}
-                class="mt-4 bg-gray-600 hover:bg-yellow-300 text-black px-4 py-2 font-bold text-xl rounded-md transition-colors duration-300 ease-in-out">Add to Cart</button>
+                data-tebex-id={tebexId}
+                data-product-name={name}
+                data-product-price={total_price}
+                data-product-currency={currency}
+                data-product-image={image}
+                class="add-to-cart mt-4 bg-yellow-500 hover:bg-yellow-300 text-black px-4 py-2 font-bold text-xl rounded-md transition-colors duration-300 ease-in-out"
+        >
+            Add to Cart
+        </button>
     </div>
 </div>
 
-<style>
-    .text-color {
-        color: rgb(230, 230, 230);
-    }
-    h2, p, li, div {
-        font-family: 'Gabarito', sans-serif;
-    }
-</style>
+<script>
+    import { cartStore } from '../../../utils/cart_store';
+
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+        button.addEventListener('click', (e) => {
+            const target = e.target as HTMLElement;
+            const item = {
+                id: Number(target.dataset.tebexId),
+                name: target.dataset.productName,
+                price: Number(target.dataset.productPrice),
+                currency: target.dataset.productCurrency,
+                image: target.dataset.productImage
+            };
+
+            cartStore.addItem(item);
+            // Dispatch event after adding to cart
+            window.dispatchEvent(new CustomEvent('add-to-cart'));
+        });
+    });
+</script>

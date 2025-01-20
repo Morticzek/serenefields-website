@@ -3,20 +3,35 @@
 import Button from "../ui/Button.astro";
 import MenuItem from "../ui/MenuItem.astro";
 import ClipboardField from "../ui/ClipboardField.astro";
+
+const currentPath = Astro.url.pathname;
+const isStorePage = currentPath === '/store';
 ---
 <header>
-    <div class="block lg:flex lg:justify-between lg:items-center lg:container">
-        <ClipboardField text="play.serenefields.com"/>
-        <div class="flex justify-center items-center gap-8 pt-5 lg:pt-0">
-            <!--<Button content="HOME" logo="HomeLogo" classes="bg-space-cadet hover:bg-space-cadet-lighter gabarito-800 tracking-looser m-2 px-4"></Button>-->
-            <!--<Button content="ABOUT" classes="bg-space-cadet hover:bg-space-cadet-lighter gabarito-800 tracking-looser m-2 px-4"></Button>-->
-            <!--<Button content="STORE" logo="StoreLogo" classes="bg-amber-600 hover:bg-amber-500 gabarito-800 tracking-looser m-2 px-4"></Button>-->
+    <div class="block lg:flex lg:justify-between lg:items-center lg:container relative pt-5">
+        <div class="lg:absolute lg:left-0">
+            <ClipboardField text="play.serenefields.com"/>
+        </div>
+        <div class="flex justify-center items-center gap-8 pt-5 lg:pt-0 w-full">
             <MenuItem content="HOME" logo="HomeLogo" href="/" classes="m-2 px-4"></MenuItem>
             <MenuItem content="STORE" logo="StoreLogo" href="/store" classes="m-2" px-42></MenuItem>
             <MenuItem content="ABOUT" logo="AboutLogo" href="/about" classes="m-2 px-4"></MenuItem>
         </div>
-        <div class="flex items-center justify-center pt-5 lg:pt-0">
-            <Button content="DISCORD" href="https://discord.gg/44cc8ary4x" logo="DiscordLogo" classes="bg-discord-blurple hover:bg-discord-blurple-lighter gabarito-800 tracking-looser m-2 px-4"></Button>
+        <div class="flex items-center justify-center pt-5 lg:pt-0 gap-4">
+            {isStorePage && (
+                    <button id="cart-toggle" class="relative">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                        <span id="cart-count" class="absolute -top-2 -right-2 bg-yellow-500 rounded-full w-5 h-5 text-xs flex items-center justify-center text-black font-bold">0</span>
+                    </button>
+            )}
+            <Button
+                    content="DISCORD"
+                    href="https://discord.gg/44cc8ary4x"
+                    logo="DiscordLogo"
+                    classes="bg-discord-blurple hover:bg-discord-blurple-lighter gabarito-800 tracking-looser m-2 px-4">
+            </Button>
         </div>
     </div>
 </header>
@@ -37,7 +52,20 @@ import ClipboardField from "../ui/ClipboardField.astro";
     document.addEventListener('DOMContentLoaded', () => {
         const clipButton = document.getElementById('clip');
         const ipElement = document.getElementById('ip');
+        const cartToggleBtn = document.getElementById('cart-toggle');
+        const cartCountElement = document.getElementById('cart-count');
 
+        // Initial cart count update
+        const cartCount = JSON.parse(localStorage.getItem('cart-items') || '[]').reduce(
+            (total, item) => total + item.quantity,
+            0
+        );
+        if (cartCountElement) {
+            cartCountElement.textContent = cartCount.toString();
+            cartCountElement.style.display = cartCount > 0 ? 'flex' : 'none';
+        }
+
+        // Clipboard functionality
         if (clipButton && ipElement) {
             clipButton.addEventListener('click', () => {
                 if (ipElement) {
@@ -53,8 +81,22 @@ import ClipboardField from "../ui/ClipboardField.astro";
                         });
                 }
             });
-        } else {
-            console.error('Element with ID "clip" or "ip" not found.');
+        }
+
+        // Cart count update
+        window.addEventListener('cart-updated', ((e: CustomEvent) => {
+            if (cartCountElement) {
+                const count = e.detail.totalQuantity;
+                cartCountElement.textContent = count.toString();
+                cartCountElement.style.display = count > 0 ? 'flex' : 'none';
+            }
+        }) as EventListener);
+
+        // Cart toggle
+        if (cartToggleBtn) {
+            cartToggleBtn.addEventListener('click', () => {
+                window.dispatchEvent(new Event('toggle-cart'));
+            });
         }
     });
 </script>

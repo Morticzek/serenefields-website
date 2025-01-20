@@ -1,16 +1,20 @@
 ---
-// @ts-nocheck
-import ProductCard from './ProductCard.astro';
-import { tebexClient } from "../../../utils/tebex";
+// components/ui/store/StoreGrid.astro
 
-const packages = await tebexClient.getPackages();
-const { perks } = Astro.props;
+import ProductCard from "./ProductCard.astro";
+const { products } = Astro.props;
 ---
-<div class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-    {packages.map(pkg => (
-            <ProductCard
-                    product={pkg}
-                    perks={perks}
-            />
-    ))}
+<div class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    {products.map(product => {
+        // Debug: Log each product's price data
+        console.log('Product in Grid:', product);
+        return (
+                <ProductCard
+                    {...product}
+                    base_price={product.base_price}
+                    total_price={product.total_price}
+                    currency={product.currency}
+                />
+        );
+    })}
 </div>
