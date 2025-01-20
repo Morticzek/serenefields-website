@@ -8,16 +8,21 @@ const currentPath = Astro.url.pathname;
 const isStorePage = currentPath === '/store';
 ---
 <header>
-    <div class="block lg:flex lg:justify-between lg:items-center lg:container relative pt-5">
-        <div class="lg:absolute lg:left-0">
+    <div class="block lg:flex lg:justify-between lg:items-center lg:container relative pt-5 lg:pt-10">
+        {/* Left side */}
+        <div class="lg:absolute lg:left-0 z-10">
             <ClipboardField text="play.serenefields.com"/>
         </div>
-        <div class="flex justify-center items-center gap-8 pt-5 lg:pt-0 w-full">
+
+        {/* Center - Menu Items */}
+        <div class="flex justify-center items-center gap-8 pt-5 lg:pt-0 w-full absolute left-1/2 transform -translate-x-1/2">
             <MenuItem content="HOME" logo="HomeLogo" href="/" classes="m-2 px-4"></MenuItem>
             <MenuItem content="STORE" logo="StoreLogo" href="/store" classes="m-2" px-42></MenuItem>
             <MenuItem content="ABOUT" logo="AboutLogo" href="/about" classes="m-2 px-4"></MenuItem>
         </div>
-        <div class="flex items-center justify-center pt-5 lg:pt-0 gap-4">
+
+        {/* Right side */}
+        <div class="lg:absolute lg:right-0 flex items-center justify-center mt-16 lg:mt-0 lg:pt-0 gap-4 z-10">
             {isStorePage && (
                     <button id="cart-toggle" class="relative">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
