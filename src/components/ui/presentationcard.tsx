@@ -9,9 +9,9 @@ import MorticzekHead from '../../assets/image/skins/morticzek_head.png?url';
 import QxertyHead from '../../assets/image/skins/qxerty_head.png?url';
 import SimonZoliHead from '../../assets/image/skins/simonzoli_head.png?url';
 import xNova204Head from '../../assets/image/skins/xnova204_head.png?url';
-import Anidiotnon_Head from '../../assets/image/skins/anidiotnon__head.png?url';
-import SpideyZacHead from '../../assets/image/skins/spideyzac_head.png?url';
-import PhobicShoeHead from '../../assets/image/skins/phobicshoe_head.png?url';
+// import Anidiotnon_Head from '../../assets/image/skins/anidiotnon__head.png?url';
+// import SpideyZacHead from '../../assets/image/skins/spideyzac_head.png?url';
+// import PhobicShoeHead from '../../assets/image/skins/phobicshoe_head.png?url';
 import x_KefirHead from '../../assets/image/skins/x_kefir_head.webp?url';
 
 import Frozenman from '../../assets/image/skins/frozenman.webp?url';
@@ -19,17 +19,14 @@ import Morticzek from '../../assets/image/skins/morticzek.webp?url';
 import Qxerty from '../../assets/image/skins/qxerty.webp?url';
 import SimonZoli from '../../assets/image/skins/simonzoli.webp?url';
 import xNova204 from '../../assets/image/skins/xnova204.webp?url';
-import Anidiotnon from '../../assets/image/skins/anidiotnon_.webp?url';
-import SpideyZac from '../../assets/image/skins/spideyzac.webp?url';
-import PhobicShoe from '../../assets/image/skins/phobicshoe.webp?url';
+// import Anidiotnon from '../../assets/image/skins/anidiotnon_.webp?url';
+// import SpideyZac from '../../assets/image/skins/spideyzac.webp?url';
+// import PhobicShoe from '../../assets/image/skins/phobicshoe.webp?url';
 import x_Kefir from '../../assets/image/skins/x_kefir.webp?url';
 
 const heads = {
     frozenman: FrozenmanHead,
     morticzek: MorticzekHead,
-    anidiotnon: Anidiotnon_Head,
-    spideyzac: SpideyZacHead,
-    phobicshoe: PhobicShoeHead,
     qxerty: QxertyHead,
     xnova204: xNova204Head,
     simonzoli: SimonZoliHead,
@@ -39,12 +36,9 @@ const heads = {
 const images = {
     frozenman: Frozenman,
     morticzek: Morticzek,
-    anidiotnon: Anidiotnon,
     qxerty: Qxerty,
     xnova204: xNova204,
     simonzoli: SimonZoli,
-    spideyzac: SpideyZac,
-    phobicshoe: PhobicShoe,
     x_kefir: x_Kefir,
 };
 
@@ -54,9 +48,9 @@ const names = {
     qxerty: 'qxerty',
     simonzoli: 'simonzoli99',
     xnova204: 'xNova204',
-    anidiotnon: 'Anidiotnon_',
-    spideyzac: 'SpideyZac',
-    phobicshoe: 'PhobicShoe',
+    // anidiotnon: 'Anidiotnon_',
+    // spideyzac: 'SpideyZac',
+    // phobicshoe: 'PhobicShoe',
     x_kefir: 'x_Kefir',
 };
 
@@ -66,9 +60,9 @@ const descriptions: Record<string, string> = {
     qxerty: "Greetings! I’m qxerty, a moderator on the server. I’m here to help you out and make sure you have a great time. Let’s have some fun together!",
     simonzoli: "Hey, I’m simonzoli99! I create the music that sets the mood for your adventures. Together, let’s make some great memories on the server!",
     xnova204: "Hi, I’m xNova204! I’m a texture artist who loves crafting unique visuals that make our server stand out. I’m excited for you to explore the world we’ve built!",
-    anidiotnon: "Hey there, I’m Anidiotnon_! I’m a server developer with a passion for creating a fun and engaging experience for everyone. Let’s make something awesome together!",
-    spideyzac: "Hi, I’m SpideyZac! As a junior developer, I’m thrilled to be part of the team working on this server. Let’s create something amazing together!",
-    phobicshoe: "Hello! I’m PhobicShoe, a junior developer who’s excited to help bring this server to life. Let’s build something great together!",
+    // anidiotnon: "Hey there, I’m Anidiotnon_! I’m a server developer with a passion for creating a fun and engaging experience for everyone. Let’s make something awesome together!",
+    // spideyzac: "Hi, I’m SpideyZac! As a junior developer, I’m thrilled to be part of the team working on this server. Let’s create something amazing together!",
+    // phobicshoe: "Hello! I’m PhobicShoe, a junior developer who’s excited to help bring this server to life. Let’s build something great together!",
     x_kefir: "Hey there, I’m x_Kefir! I’m a game master who loves creating exciting adventures for you to embark on. Get ready for some epic quests on our server!",
 };
 
@@ -78,9 +72,9 @@ const roles = {
     qxerty: 'Moderator',
     simonzoli: 'Music Composer',
     xnova204: 'Texture Artist',
-    anidiotnon: 'Junior Developer',
-    spideyzac: 'Junior Developer',
-    phobicshoe: 'Junior Developer',
+    // anidiotnon: 'Junior Developer',
+    // spideyzac: 'Junior Developer',
+    // phobicshoe: 'Junior Developer',
     x_kefir: 'Game Master',
 };
 
