@@ -17,7 +17,7 @@ import Email from '../../assets/svg/email-logo.svg?url';
                 <div class="mx-auto my-6 text-left w-full">
                 </div>
                 <div class="my-6">
-                    <p class="text-neutral-400 gabarito-400">&copy; SereneFields 2024</p>
+                    <p class="text-neutral-400 gabarito-400">&copy; SereneFields <span id="footer-year-wide">2024</span></p>
                     <p class="gabarito-400 text-color">Not affiliated with or endorsed by Mojang or Microsoft.</p>
                 </div>
             </div>
@@ -51,7 +51,7 @@ import Email from '../../assets/svg/email-logo.svg?url';
         <div class="flex flex-1 justify-around items-center mt-2 pt-2 pb-10 divide-x-2">
             <div class="w-1/2 items-center">
                 <div class="my-6">
-                    <p class="text-neutral-400 gabarito-400">&copy; SereneFields 2024</p>
+                    <p class="text-neutral-400 gabarito-400">&copy; SereneFields <span id="footer-year">2024</span></p>
                     <p class="gabarito-400 text-color">Not affiliated with or endorsed by Mojang or Microsoft.</p>
                 </div>
             </div>
@@ -99,3 +99,14 @@ import Email from '../../assets/svg/email-logo.svg?url';
         color: rgb(230, 230, 230);
     }
 </style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const yearElement = document.getElementById('footer-year');
+        const yearElementWide = document.getElementById('footer-year-wide');
+        if (yearElement || yearElementWide) {
+            yearElement.textContent = new Date().getFullYear().toString();
+            yearElementWide.textContent = new Date().getFullYear().toString();
+        }
+    });
+</script>
