@@ -41,8 +41,9 @@
         }
     }
 
-    // Initial check
+    // Check for existing nickname on page load
     const savedNickname = localStorage.getItem('minecraft-nickname');
+    // Only show modal if there's no saved nickname
     if (!savedNickname) {
         showModal();
     }
@@ -63,7 +64,7 @@
         }
     });
 
-    // Listen for show-nickname-modal event
+    // Listen for show-nickname-modal event (for "Change" button)
     window.addEventListener('show-nickname-modal', () => {
         const input = document.getElementById('nickname-input') as HTMLInputElement;
         if (input) {
