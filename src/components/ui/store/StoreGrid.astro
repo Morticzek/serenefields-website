@@ -7,7 +7,7 @@ const { products } = Astro.props;
 <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
     {products.map(product => {
         // Debug: Log each product's price data
-        console.log('Product in Grid:', product);
+        <!--console.log('Product in Grid:', product);-->
         return (
                 <ProductCard
                     {...product}
