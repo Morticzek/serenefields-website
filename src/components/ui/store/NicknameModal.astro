@@ -1,30 +1,45 @@
 ---
 // components/ui/store/NicknameModal.astro
 ---
-<div id="nickname-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-    <div class="bg-neutral-800 p-6 rounded-lg shadow-xl max-w-md w-full">
-        <h2 class="text-2xl font-bold text-white mb-4">Enter Your Minecraft Nickname</h2>
-        <form id="nickname-form" class="space-y-4">
-            <div>
-                <input
-                        type="text"
-                        id="nickname-input"
-                        class="w-full p-2 rounded bg-neutral-700 text-white border border-gray-600 focus:border-yellow-500 focus:outline-none"
-                        placeholder="Your Minecraft nickname"
-                        required
-                        pattern="[a-zA-Z0-9_]{2,16}"
-                        title="Minecraft nickname (2-16 characters, alphanumeric and underscore only)"
+<div id="nickname-modal" class="fixed inset-0 bg-black bg-opacity-50 items-center justify-center z-50 transition-all duration-300" style="display: none;">
+    <div class="absolute inset-0 backdrop-blur-sm transition-all duration-300"></div>
+
+    <div class="relative z-10 bg-neutral-800 p-6 rounded-lg shadow-xl max-w-md w-full mx-4 transition-all duration-300" id="modal-content">
+        <div id="input-content">
+            <h2 class="text-2xl font-bold text-white mb-4">Enter Your Minecraft Nickname</h2>
+            <form id="nickname-form" class="space-y-4">
+                <div>
+                    <input
+                            type="text"
+                            id="nickname-input"
+                            class="w-full p-2 rounded bg-neutral-700 text-white border border-gray-600 focus:border-yellow-500 focus:outline-none"
+                            placeholder="Your Minecraft nickname"
+                            required
+                            pattern="[a-zA-Z0-9_]{2,16}"
+                            title="Minecraft nickname (2-16 characters, alphanumeric and underscore only)"
+                    >
+                    <p id="nickname-error" class="text-red-500 text-sm mt-1 hidden"></p>
+                </div>
+                <button
+                        type="submit"
+                        class="w-full bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-2 px-4 rounded transition-colors"
                 >
+                    Continue Shopping
+                </button>
+            </form>
+        </div>
+        <div id="success-content" class="hidden">
+            <div class="flex flex-col items-center justify-center py-4">
+                <svg class="w-16 h-16 text-white mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <p class="text-white text-xl font-bold">Valid Username</p>
             </div>
-            <button
-                    type="submit"
-                    class="w-full bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-2 px-4 rounded transition-colors"
-            >
-                Continue Shopping
-            </button>
-        </form>
+        </div>
     </div>
 </div>
+
+
 
 <script>
     function hideModal() {
@@ -41,34 +56,126 @@
         }
     }
 
-    // Check for existing nickname on page load
+    async function validateMinecraftUsername(username: string): Promise<boolean> {
+        try {
+            // Attempt to create a test basket with the username
+            const response = await fetch(
+                `https://headless.tebex.io/api/accounts/${import.meta.env.PUBLIC_TEBEX_TOKEN}/baskets`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        username: username,
+                        complete_url: window.location.origin,
+                        cancel_url: window.location.origin
+                    })
+                }
+            );
+
+            // If basket creation succeeds, the username is valid
+            // If it fails with 422, the username is invalid
+            return response.status === 200;
+        } catch (error) {
+            return false;
+        }
+    }
+
+
+    function showError(message: string) {
+        const errorElement = document.getElementById('nickname-error');
+        if (errorElement) {
+            errorElement.textContent = message;
+            errorElement.classList.remove('hidden');
+        }
+    }
+
+    function hideError() {
+        const errorElement = document.getElementById('nickname-error');
+        if (errorElement) {
+            errorElement.classList.add('hidden');
+        }
+    }
+
+    // Initial check for nickname
     const savedNickname = localStorage.getItem('minecraft-nickname');
-    // Only show modal if there's no saved nickname
     if (!savedNickname) {
         showModal();
     }
 
-    // Form submission
+    function showSuccess() {
+        const modal = document.getElementById('nickname-modal');
+        const modalContent = document.getElementById('modal-content');
+        const inputContent = document.getElementById('input-content');
+        const successContent = document.getElementById('success-content');
+
+        if (modal && modalContent && inputContent && successContent) {
+            // First transition - hide input content
+            inputContent.style.opacity = '0';
+            setTimeout(() => {
+                inputContent.classList.add('hidden');
+                successContent.classList.remove('hidden');
+
+                // Change modal appearance
+                modalContent.classList.remove('bg-neutral-800');
+                modalContent.classList.add('bg-green-500');
+                modalContent.classList.add('transform');
+                modalContent.classList.add('scale-95');
+                modalContent.style.height = 'auto';
+                modalContent.style.padding = '2rem';
+
+                // Show success content
+                successContent.style.opacity = '0';
+                setTimeout(() => {
+                    successContent.style.opacity = '1';
+
+                    // Fade out everything after 1 second
+                    setTimeout(() => {
+                        modal.classList.add('opacity-0');
+                        setTimeout(() => {
+                            hideModal();
+                            // Reset modal state
+                            modalContent.classList.remove('bg-green-500', 'transform', 'scale-95');
+                            modalContent.classList.add('bg-neutral-800');
+                            inputContent.classList.remove('hidden');
+                            inputContent.style.opacity = '1';
+                            successContent.classList.add('hidden');
+                            modal.classList.remove('opacity-0');
+                        }, 300);
+                    }, 1000);
+                }, 50);
+            }, 300);
+        }
+    }
+
     const form = document.getElementById('nickname-form');
-    form?.addEventListener('submit', (e) => {
+    form?.addEventListener('submit', async (e) => {
         e.preventDefault();
         const input = document.getElementById('nickname-input') as HTMLInputElement;
         const nickname = input.value.trim();
 
         if (nickname) {
-            localStorage.setItem('minecraft-nickname', nickname);
-            hideModal();
-            window.dispatchEvent(new CustomEvent('nickname-set', {
-                detail: { nickname }
-            }));
+            hideError();
+            const isValid = await validateMinecraftUsername(nickname);
+
+            if (isValid) {
+                localStorage.setItem('minecraft-nickname', nickname);
+                window.dispatchEvent(new CustomEvent('nickname-set', {
+                    detail: { nickname }
+                }));
+                showSuccess();
+            } else {
+                showError('This Minecraft username does not exist. Please check the spelling.');
+            }
         }
     });
 
-    // Listen for show-nickname-modal event (for "Change" button)
     window.addEventListener('show-nickname-modal', () => {
         const input = document.getElementById('nickname-input') as HTMLInputElement;
         if (input) {
             input.value = localStorage.getItem('minecraft-nickname') || '';
+            hideError();
         }
         showModal();
     });
