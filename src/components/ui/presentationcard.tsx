@@ -119,7 +119,8 @@ const PresentationCard = () => {
 
     return (
         <div className="container mx-auto p-4">
-            <div className="flex justify-center bg-neutral-800 w-fit mx-auto m-4 text-color px-8 py-4 rounded-xl shadow-lg">
+            <div
+                className="flex justify-center bg-neutral-800 w-fit mx-auto m-4 text-color px-8 py-4 rounded-xl shadow-lg">
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
                     {skinKeys.map((name, index) => (
                         <div key={index} className="flex justify-center items-center mx-3">
@@ -133,17 +134,19 @@ const PresentationCard = () => {
                                     }, 500); // 500ms corresponds to the duration of fade-out
                                 }}
                             >
-                                <img src={heads[name]} alt="Head" className="w-16 h-16 rounded-full" loading="lazy" />
+                                <img src={heads[name]} alt="Head" className="w-16 h-16 rounded-full" loading="lazy"/>
                             </button>
                         </div>
                     ))}
                 </div>
             </div>
 
-            <div className="hidden md:flex relative justify-center w-full lg:w-2/3 container mx-auto bg-neutral-800 rounded-xl shadow-lg divide-x-4 px-4">
+            <div
+                className="hidden md:flex relative justify-center w-full lg:w-2/3 container mx-auto bg-neutral-800 rounded-xl shadow-lg divide-x-4 px-4">
                 <div className="w-1/2 text-left divide-y-2 pr-4 p-6">
                     {selectedIsContentTeam && <h3 className={twMerge(styles.h3, 'text-yellow-300')}>Content Team</h3>}
-                    {selectedRole === 'Owner' ? <h3 className={twMerge(styles.h3, 'text-red-700')}>Owner</h3> : <h4 className={twMerge(styles.h3)}>{selectedRole}</h4>}
+                    {selectedRole === 'Owner' ? <h3 className={twMerge(styles.h3, 'text-red-700')}>Owner</h3> :
+                        <h4 className={twMerge(styles.h3)}>{selectedRole}</h4>}
                     <h5 className={twMerge(styles.h2)}>{selectedName}</h5>
                     <h6 className={twMerge(
                         styles.p,
@@ -161,6 +164,38 @@ const PresentationCard = () => {
                         loading="lazy"
                     />
                 </div>
+            </div>
+            <div className="md:hidden flex flex-col w-full container mx-auto bg-neutral-800 rounded-xl shadow-lg px-4">
+                <div className="text-center p-4">
+                    {selectedIsContentTeam && <h3 className={twMerge(styles.h3, 'text-yellow-300')}>Content Team</h3>}
+                    {selectedRole === 'Owner' ?
+                        <h3 className={twMerge(styles.h3, 'text-red-700')}>Owner</h3> :
+                        <h4 className={twMerge(styles.h3)}>{selectedRole}</h4>
+                    }
+                    <h5 className={twMerge(styles.h2)}>{selectedName}</h5>
+                </div>
+
+                <div className="flex justify-center p-4">
+                    <img
+                        src={selectedImage}
+                        alt="Skin"
+                        className={twMerge(
+                            'rounded-lg p-2 max-h-[300px]',
+                            animating ? 'animate-fadeOutRight' : 'animate-fadeInLeft'
+                        )}
+                        loading="lazy"
+                    />
+                </div>
+
+                {/*<div className="p-4">*/}
+                {/*    <p className={twMerge(*/}
+                {/*        styles.p,*/}
+                {/*        'text-xl text-center',*/}
+                {/*        animating ? 'animate-fadeOut' : 'animate-fadeIn'*/}
+                {/*    )}>*/}
+                {/*        {selectedDescription}*/}
+                {/*    </p>*/}
+                {/*</div>*/}
             </div>
         </div>
     );
