@@ -141,8 +141,7 @@ const PresentationCard = () => {
                 </div>
             </div>
 
-            <div
-                className="hidden md:flex relative justify-center w-full lg:w-2/3 container mx-auto bg-neutral-800 rounded-xl shadow-lg divide-x-4 px-4">
+            <div className="hidden md:flex relative justify-center w-full lg:w-2/3 container mx-auto bg-neutral-800 rounded-xl shadow-lg divide-x-4 px-4">
                 <div className="w-1/2 text-left divide-y-2 pr-4 p-6">
                     {selectedIsContentTeam && <h3 className={twMerge(styles.h3, 'text-yellow-300')}>Content Team</h3>}
                     {selectedRole === 'Owner' ? <h3 className={twMerge(styles.h3, 'text-red-700')}>Owner</h3> :
@@ -165,7 +164,7 @@ const PresentationCard = () => {
                     />
                 </div>
             </div>
-            <div className="md:hidden flex flex-col w-full container mx-auto bg-neutral-800 rounded-xl shadow-lg px-4">
+            <div className="md:hidden flex-col w-full container mx-auto bg-neutral-800 rounded-xl shadow-lg px-4">
                 <div className="text-center p-4">
                     {selectedIsContentTeam && <h3 className={twMerge(styles.h3, 'text-yellow-300')}>Content Team</h3>}
                     {selectedRole === 'Owner' ?
@@ -186,16 +185,6 @@ const PresentationCard = () => {
                         loading="lazy"
                     />
                 </div>
-
-                {/*<div className="p-4">*/}
-                {/*    <p className={twMerge(*/}
-                {/*        styles.p,*/}
-                {/*        'text-xl text-center',*/}
-                {/*        animating ? 'animate-fadeOut' : 'animate-fadeIn'*/}
-                {/*    )}>*/}
-                {/*        {selectedDescription}*/}
-                {/*    </p>*/}
-                {/*</div>*/}
             </div>
         </div>
     );
