@@ -2,6 +2,7 @@
 // components/ui/store/ProductCard.astro
 
 import {twMerge} from "tailwind-merge";
+import ProductDescription from "./ProductDescription";
 const {
     name,
     description,
@@ -19,8 +20,8 @@ const displayPrice = Number(total_price).toFixed(2);
 <div class={twMerge("relative bg-neutral-800 text-color p-6 rounded-xl shadow-lg flex flex-col justify-between h-full border-4", border)}>
     <div class="flex flex-col items-center mb-4 mt-8">
         <img src={image} alt={name} class="w-full object-cover mb-4" width="256" height="256" loading="lazy"/>
-        <h2 class={twMerge(color, "text-4xl font-bold mb-2")}>{name}</h2>
-        <p class="text-xl text-[#c9c9c9] font-normal text-left mb-4 min-h-[120px]">{description}</p>
+        <h2 class={twMerge(color, "text-4xl font-bold")}>{name}</h2>
+        <p class="text-xl text-[#c9c9c9] font-normal text-left min-h-[120px]"><ProductDescription description={description}/></p>
     </div>
     <div class="text-center">
         <p class="text-2xl text-white font-semibold">
@@ -50,7 +51,8 @@ const displayPrice = Number(total_price).toFixed(2);
                 name: target.dataset.productName,
                 price: Number(target.dataset.productPrice),
                 currency: target.dataset.productCurrency,
-                image: target.dataset.productImage
+                image: target.dataset.productImage,
+                oneTime: target.dataset.oneTime === 'true'
             };
 
             cartStore.addItem(item);
