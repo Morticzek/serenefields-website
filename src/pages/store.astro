@@ -88,3 +88,27 @@ const faqs = [
     <NicknameModal />
     <StoreFAQ faqs={faqs} />
 </MainLayout>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        console.group('🎮 Minecraft Store Packages');
+
+        // Log all Tebex packages on the page
+        const storePackages = document.querySelectorAll('.product-card');
+        storePackages.forEach(pkg => {
+            console.log('📦 Package:', {
+                id: pkg.dataset.tebexId,
+                name: pkg.dataset.productName,
+                price: pkg.dataset.productPrice,
+                currency: pkg.dataset.productCurrency,
+                oneTime: pkg.dataset.oneTime === 'true'
+            });
+        });
+
+        // Log current cart state
+        const cartItems = JSON.parse(localStorage.getItem('cart-items') || '[]');
+        console.log('🛒 Current Cart:', cartItems);
+
+        console.groupEnd();
+    });
+</script>
