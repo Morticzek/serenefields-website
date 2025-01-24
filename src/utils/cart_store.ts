@@ -1,4 +1,3 @@
-// stores/CartStore.ts
 interface CartItem {
     id: number;
     name: string;
@@ -6,6 +5,7 @@ interface CartItem {
     currency: string;
     quantity: number;
     image: string;
+    oneTime?: boolean;
 }
 
 class CartStore {
@@ -41,12 +41,18 @@ class CartStore {
 
     addItem(item: Omit<CartItem, 'quantity'>) {
         const existingItem = this.items.get(item.id);
-        if (existingItem) {
+
+        if (existingItem && item.oneTime) {
+            return;
+        }
+
+        if (existingItem && !item.oneTime) {
             existingItem.quantity += 1;
             this.items.set(item.id, existingItem);
         } else {
             this.items.set(item.id, { ...item, quantity: 1 });
         }
+
         this.saveToStorage();
         this.updateCart();
     }
@@ -65,6 +71,10 @@ class CartStore {
     updateQuantity(id: number, quantity: number) {
         const item = this.items.get(id);
         if (item) {
+            if (item.oneTime) {
+                return;
+            }
+
             if (quantity <= 0) {
                 this.items.delete(id);
             } else {
