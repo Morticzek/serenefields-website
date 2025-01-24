@@ -2,8 +2,8 @@
 module.exports = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
+    './pages/**/*.{astro,ts,tsx}',
+    './components/**/*.{astro,ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
     './src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}',
@@ -22,6 +22,26 @@ module.exports = {
       },
     },
     extend: {
+      typography: ({ theme }) => ({
+        invert: {
+          css: {
+            '--tw-prose-body': theme('colors.gray[300]'),
+            '--tw-prose-headings': theme('colors.white'),
+            '--tw-prose-links': theme('colors.yellow[500]'),
+            '--tw-prose-bold': theme('colors.white'),
+            '--tw-prose-bullets': theme('colors.gray[400]'),
+            'p': {
+              marginTop: '1em',
+              marginBottom: '1em'
+            },
+            'ul': {
+              marginTop: '1em',
+              marginBottom: '1em'
+            },
+
+          }
+        }
+      }),
       colors: {
         "discord-blurple": "#5865F2",
         "discord-blurple-lighter": "#5B69F6",
@@ -98,5 +118,6 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"),
+  require('@tailwindcss/typography')],
 }
