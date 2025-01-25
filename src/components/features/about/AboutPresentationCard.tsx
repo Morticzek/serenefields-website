@@ -2,27 +2,27 @@
 import React, { useState, useEffect } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-import styles from '../../assets/styles/components/presentationcard.module.css';
+import styles from '../../../assets/styles/components/presentationcard.module.css';
 
-import FrozenmanHead from '../../assets/image/skins/frozenman_head.png?url';
-import MorticzekHead from '../../assets/image/skins/morticzek_head.png?url';
-import QxertyHead from '../../assets/image/skins/qxerty_head.png?url';
-import SimonZoliHead from '../../assets/image/skins/simonzoli_head.png?url';
-import xNova204Head from '../../assets/image/skins/xnova204_head.png?url';
+import FrozenmanHead from '../../../assets/image/skins/frozenman_head.png?url';
+import MorticzekHead from '../../../assets/image/skins/morticzek_head.png?url';
+import QxertyHead from '../../../assets/image/skins/qxerty_head.png?url';
+import SimonZoliHead from '../../../assets/image/skins/simonzoli_head.png?url';
+import xNova204Head from '../../../assets/image/skins/xnova204_head.png?url';
 // import Anidiotnon_Head from '../../assets/image/skins/anidiotnon__head.png?url';
 // import SpideyZacHead from '../../assets/image/skins/spideyzac_head.png?url';
 // import PhobicShoeHead from '../../assets/image/skins/phobicshoe_head.png?url';
-import x_KefirHead from '../../assets/image/skins/x_kefir_head.webp?url';
+import x_KefirHead from '../../../assets/image/skins/x_kefir_head.webp?url';
 
-import Frozenman from '../../assets/image/skins/frozenman.webp?url';
-import Morticzek from '../../assets/image/skins/morticzek.webp?url';
-import Qxerty from '../../assets/image/skins/qxerty.webp?url';
-import SimonZoli from '../../assets/image/skins/simonzoli.webp?url';
-import xNova204 from '../../assets/image/skins/xnova204.webp?url';
+import Frozenman from '../../../assets/image/skins/frozenman.webp?url';
+import Morticzek from '../../../assets/image/skins/morticzek.webp?url';
+import Qxerty from '../../../assets/image/skins/qxerty.webp?url';
+import SimonZoli from '../../../assets/image/skins/simonzoli.webp?url';
+import xNova204 from '../../../assets/image/skins/xnova204.webp?url';
 // import Anidiotnon from '../../assets/image/skins/anidiotnon_.webp?url';
 // import SpideyZac from '../../assets/image/skins/spideyzac.webp?url';
 // import PhobicShoe from '../../assets/image/skins/phobicshoe.webp?url';
-import x_Kefir from '../../assets/image/skins/x_kefir.webp?url';
+import x_Kefir from '../../../assets/image/skins/x_kefir.webp?url';
 
 const heads = {
     frozenman: FrozenmanHead,
@@ -82,7 +82,7 @@ const isContentTeam = (role: string) => {
     return role !== 'Owner';
 };
 
-const PresentationCard = () => {
+const AboutPresentationCard = () => {
     const [selectedName, setSelectedName] = useState(names.frozenman);
     const [selectedDescription, setSelectedDescription] = useState(descriptions.frozenman);
     const [selectedImage, setSelectedImage] = useState(images.frozenman);
@@ -190,4 +190,4 @@ const PresentationCard = () => {
     );
 };
 
-export default PresentationCard;
+export default AboutPresentationCard;

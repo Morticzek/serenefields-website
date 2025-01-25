@@ -2,8 +2,8 @@
 // @ts-nocheck
 import '@/assets/styles/globals.css';
 import '@/assets/styles/tailwind.css';
-import StoreHeader from '../components/ui/store/StoreHeader.astro';
-import StoreGrid from '../components/ui/store/StoreGrid.astro';
+import StoreHeader from '../components/features/store/StoreHeader.astro';
+import StoreGrid from '../components/features/store/StoreGrid.astro';
 import MainLayout from "../layouts/MainLayout.astro";
 import {
     extractPerksFromDescription,
@@ -17,9 +17,9 @@ import Tier1 from '../assets/image/products/rank_lord.webp?url';
 import Tier2 from '../assets/image/products/rank_baron.webp?url';
 import Tier3 from '../assets/image/products/rank_duke.webp?url';
 import Tier4 from '../assets/image/products/rank_land_grant.webp?url';
-import StoreFAQ from "../components/ui/store/StoreFAQ.astro";
-import ShoppingCart from "../components/ui/store/ShoppingCart.astro";
-import NicknameModal from "../components/ui/store/NicknameModal.astro";
+import StoreFAQ from "../components/features/store/StoreFAQ.astro";
+import ShoppingCart from "../components/features/store/StoreShoppingCart.astro";
+import NicknameModal from "../components/features/store/StoreNicknameModal.astro";
 import TebexCheckout from "../components/ui/store/TebexCheckout.astro";
 
 let products = [];

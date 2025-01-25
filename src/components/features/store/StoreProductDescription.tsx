@@ -11,7 +11,7 @@ const formatDescription = (htmlString: string) => {
     };
 };
 
-const ProductDescription: React.FC<ProductDescriptionProps> = ({ description }) => {
+const StoreProductDescription: React.FC<ProductDescriptionProps> = ({ description }) => {
     return (
         <div
             dangerouslySetInnerHTML={formatDescription(description)}
@@ -20,4 +20,4 @@ const ProductDescription: React.FC<ProductDescriptionProps> = ({ description }) 
     );
 };
 
-export default ProductDescription;
+export default StoreProductDescription;
