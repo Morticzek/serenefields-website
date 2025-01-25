@@ -2,8 +2,8 @@
 import '@/assets/styles/globals.css';
 import '@/assets/styles/tailwind.css';
 import MainLayout from "../layouts/MainLayout.astro";
-import Features from "../components/widgets/Features.astro";
-import SwiperCarousel from "../components/ui/swipercarousel";
+import Features from "../components/features/home/HomeFeatures.astro";
+import SwipingCarousel from "../components/core/carousel/SwipingCarousel";
 
 import img1 from "@/assets/image/carousel/img1.webp?url";
 import img2 from "@/assets/image/carousel/img2.webp?url";
@@ -87,8 +87,8 @@ const features = [
 		Welcome to SereneFields!
 	</p>
 	<div class="flex justify-center items-center p-0 mt-12">
-		<!--<HeroCarousel client:load/>-->
-		<SwiperCarousel items={items} client:load/>
+		<!--<HeroSectionCarousel client:load/>-->
+		<SwipingCarousel items={items} client:load/>
 	</div>
 	<p class="flex text-3xl smaller-font justify-center items-center container mt-12">
 

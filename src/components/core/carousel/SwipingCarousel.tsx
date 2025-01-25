@@ -15,7 +15,7 @@ interface CarouselProps {
     items: CarouselItem[];
 }
 
-const SwiperCarousel: React.FC<CarouselProps> = ({ items }) => {
+const SwipingCarousel: React.FC<CarouselProps> = ({ items }) => {
     const [currentText, setCurrentText] = useState(items[0].text);
 
     return (
@@ -39,4 +39,4 @@ const SwiperCarousel: React.FC<CarouselProps> = ({ items }) => {
     );
 };
 
-export default SwiperCarousel;
+export default SwipingCarousel;

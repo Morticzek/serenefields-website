@@ -6,8 +6,8 @@ import useEmblaCarousel, {
 } from "embla-carousel-react"
 import { ArrowLeft, ArrowRight } from "lucide-react"
 
-import { cn } from "@/utils"
-import { Button } from "@/components/ui/button"
+import { cn } from "@/utils.ts"
+import { SwiperButton } from "@/components/core/carousel/SwiperButton.tsx"
 
 type CarouselApi = UseEmblaCarouselType[1]
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>
@@ -196,12 +196,12 @@ CarouselItem.displayName = "CarouselItem"
 
 const CarouselPrevious = React.forwardRef<
     HTMLButtonElement,
-    React.ComponentProps<typeof Button>
+    React.ComponentProps<typeof SwiperButton>
 >(({ className, variant = "outline", size = "icon", ...props }, ref) => {
     const { orientation, scrollPrev, canScrollPrev } = useCarousel()
 
     return (
-        <Button
+        <SwiperButton
             ref={ref}
             variant={variant}
             size={size}
@@ -218,19 +218,19 @@ const CarouselPrevious = React.forwardRef<
         >
             <ArrowLeft className="h-4 w-4" />
             <span className="sr-only">Previous slide</span>
-        </Button>
+        </SwiperButton>
     )
 })
 CarouselPrevious.displayName = "CarouselPrevious"
 
 const CarouselNext = React.forwardRef<
     HTMLButtonElement,
-    React.ComponentProps<typeof Button>
+    React.ComponentProps<typeof SwiperButton>
 >(({ className, variant = "outline", size = "icon", ...props }, ref) => {
     const { orientation, scrollNext, canScrollNext } = useCarousel()
 
     return (
-        <Button
+        <SwiperButton
             ref={ref}
             variant={variant}
             size={size}
@@ -247,7 +247,7 @@ const CarouselNext = React.forwardRef<
         >
             <ArrowRight className="h-4 w-4" />
             <span className="sr-only">Next slide</span>
-        </Button>
+        </SwiperButton>
     )
 })
 CarouselNext.displayName = "CarouselNext"
