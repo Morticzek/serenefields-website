@@ -22,6 +22,9 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        'ascii': ['ASCII', 'monospace'],
+      },
       typography: ({ theme }) => ({
         invert: {
           css: {
