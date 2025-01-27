@@ -2,17 +2,19 @@
 import ProductCard from "./StoreProductCard.astro";
 const { products } = Astro.props;
 ---
-<div class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-    {products.map(product => {
-        // Debug line for products
-        <!--console.log('Product in Grid:', product);-->
-        return (
+<div class={`container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ${
+    products.length < 3 ? 'lg:justify-items-center lg:grid-cols-2 xl:grid-cols-2' : ''
+}`}>
+    <div class={`col-span-full lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8 ${
+        products.length < 3 ? 'lg:flex lg:justify-center lg:gap-8' : 'lg:grid lg:grid-cols-3'
+    }`}>
+        {products.map(product => (
                 <ProductCard
                     {...product}
                     base_price={product.base_price}
                     total_price={product.total_price}
                     currency={product.currency}
                 />
-        );
-    })}
+        ))}
+    </div>
 </div>
