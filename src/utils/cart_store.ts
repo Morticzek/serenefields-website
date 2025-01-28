@@ -5,7 +5,7 @@ interface CartItem {
     currency: string;
     quantity: number;
     image: string;
-    oneTime?: boolean;
+    oneTime: boolean;
 }
 
 class CartStore {

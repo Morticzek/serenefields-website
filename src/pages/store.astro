@@ -60,21 +60,19 @@ function getCategoryBorder(packageName: string): string {
     return borders[packageName] || 'border-gray-200';
 }
 
-// Sample FAQ data
 const faqs = [
     {
         question: 'How do I purchase a rank?',
-        answer: 'To purchase a rank, click on the BUY button next to the rank you want and follow the instructions.'
+        answer: 'To purchase a rank, click on the \'Add to cart\' button next to the rank you want and checkout at the shopping cart.'
     },
     {
         question: 'What payment methods are accepted?',
-        answer: 'We accept various payment methods including credit cards, PayPal, and more.'
+        answer: 'Various payment methods are accepted. For a full list, please refer to the payment methods available during checkout.'
     },
-    {
-        question: 'Can I upgrade my rank?',
-        answer: 'Yes, you can upgrade your rank at any time. Simply purchase the desired rank and the system will apply the upgrade.'
-    },
-    // Add more FAQs as needed
+    // {
+    //     question: 'Can I upgrade my rank?',
+    //     answer: 'Yes, you can upgrade your rank at any time. Simply purchase the desired rank and the system will apply the upgrade.'
+    // },
 ];
 ---
 
@@ -93,7 +91,6 @@ const faqs = [
     document.addEventListener('DOMContentLoaded', () => {
         console.group('🎮 Minecraft Store Packages');
 
-        // Log all Tebex packages on the page
         const storePackages = document.querySelectorAll('.product-card');
         storePackages.forEach(pkg => {
             console.log('📦 Package:', {
@@ -105,10 +102,9 @@ const faqs = [
             });
         });
 
-        // Log current cart state
         const cartItems = JSON.parse(localStorage.getItem('cart-items') || '[]');
-        console.log('🛒 Current Cart:', cartItems);
+        // console.log('🛒 Current Cart:', cartItems);
 
-        console.groupEnd();
+        // console.groupEnd();
     });
 </script>
